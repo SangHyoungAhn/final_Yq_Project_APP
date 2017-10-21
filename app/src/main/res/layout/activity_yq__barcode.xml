@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.YQ_Barcode"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="메뉴 정보"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+    <!--
+    <Button
+        android:id="@+id/scan_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCAN "
+        android:layout_marginTop="300dp"
+        android:layout_gravity="center"/>
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:text="날 짜: " />
+
+        <TextView
+            android:id="@+id/m_date"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:text="메뉴 이름: " />
+
+        <TextView
+            android:id="@+id/m_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+
+            android:text="메뉴 종류: " />
+        <TextView
+            android:id="@+id/m_type"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:text="장 소: " />
+        <TextView
+            android:id="@+id/m_chain"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:text="가 격: " />
+        <TextView
+            android:id="@+id/m_price"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/send_Data"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/roundshape"
+            android:text="결제" />
+
+        <Button
+            android:id="@+id/cancel_Data"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/roundshape"
+            android:text="취소" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

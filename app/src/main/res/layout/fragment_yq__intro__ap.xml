@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.YQ_Intro_APP"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:src="@mipmap/ic_yongin" />
+        <!--
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="YQ"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+        -->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:text=" YQ는 Yongin-QRcode의 줄임말이다."
+            android:textSize="15dp" />
+
+
+        <TextView
+
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:text=" YQ는 00대학교 컴퓨터과학과   학생들에 의해서 설계된 어플이다."
+            android:textSize="15dp" />
+
+
+
+        <TextView
+
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:text=" YQ의 궁극적 목적은 식사시간 때 식당 내에서 재학생들의 간편한 결제를 통해 편리한 식사를 할 수 있도록 하는데 목적을 두고 있다."
+            android:textSize="15dp" />
+
+
+        <TextView
+
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:text=" YQ를 통해서 각 식당의 위치, 메뉴조회 및 간편한 충전 및 결제의 기능을 이용할 수 있다."
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>
+

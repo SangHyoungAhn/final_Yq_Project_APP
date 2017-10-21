@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Student_Recharge_Page"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+
+        android:id="@+id/Usage_contents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <Button
+
+                android:id="@+id/UseWeekBtn"
+                android:background="@drawable/roundshape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:gravity="center"
+                android:text="1주일" />
+
+            <Button
+
+                android:id="@+id/UseMonthBtn"
+                android:background="@drawable/roundshape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1개월" />
+
+            <Button
+
+                android:id="@+id/UseThMonthBtn"
+                android:background="@drawable/roundshape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="3개월" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

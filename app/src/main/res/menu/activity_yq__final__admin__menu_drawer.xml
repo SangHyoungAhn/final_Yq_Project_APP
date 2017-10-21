@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/admin_soldout"
+            android:icon="@drawable/admin_soldout"
+            android:title="매진관리" />
+
+        <item
+            android:id="@+id/nav_adminLogout"
+            android:icon="@drawable/powerbutton"
+            android:title="로그아웃" />
+
+    </group>
+
+    <item android:title="도움말">
+        <menu>
+            <item
+                android:id="@+id/admin_intro_app"
+                android:icon="@drawable/information"
+                android:title="어플소개" />
+            <item
+                android:id="@+id/admin_createby"
+                android:icon="@drawable/madebypeople"
+                android:title="만든 사람들" />
+        </menu>
+    </item>
+
+</menu>

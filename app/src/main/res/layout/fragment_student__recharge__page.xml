@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Student_Recharge_Page"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+
+        android:id="@+id/Recharge_contents"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+
+            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/creditcard">
+        </ImageView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:hint=" 충전금액">
+
+        </EditText>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text=" " />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+
+        <Button
+
+            android:id="@+id/stu_recharge_Button"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="30dp"
+            android:layout_height="50dp"
+            android:layout_width="130dp"
+            android:background="@drawable/roundshape"
+            android:text="충전하기">
+
+        </Button>
+
+
+        <Button
+
+            android:id="@+id/stu_recharge_gift"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="50dp"
+            android:layout_height="50dp"
+            android:layout_width="130dp"
+            android:background="@drawable/roundshape"
+            android:text="선물">
+        </Button>
+    </LinearLayout>
+</LinearLayout>

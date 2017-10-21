@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Student_Login_Page">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:orientation="vertical"
+            android:background="#FFFFFFFF">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:shadowColor="#BDBDBDBD"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="1.5"
+                android:text="YQ"
+                android:textColor="#0091EA"
+                android:textSize="120dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#FFFFFFFF">
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="140dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#FFFFFFFF">
+
+                <Button
+                    android:id="@+id/choiceStu"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundshape"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="STUDENT"
+                    android:textColor="#616161"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+
+                <Button
+                    android:id="@+id/choiceAdmin"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+
+                    android:background="@drawable/roundshape"
+                    android:orientation="vertical"
+                    android:text="ADMIN"
+                    android:textColor="#616161"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

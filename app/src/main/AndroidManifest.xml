@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="comdrivemy_drive.google.httpsdrive.yongq_project">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_yongin"
+        android:label="YQ"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Student_Login_Page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Admin_Login_Page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".YQ_Page"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".YQ_Sort_Page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".YQ_Final_Main_Menu"
+            android:label="@string/title_activity_yq__final__main__menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".YQ_Final_Admin_Menu"
+            android:label="@string/title_activity_yq__final__admin__menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".YQ_Barcode" />
+        <activity android:name=".YQ_CheckPayment_Page" />
+        <activity android:name=".YQ_Gift_Barcode" />
+        <activity android:name=".YQ_Gift_Payment"></activity>
+    </application>
+
+</manifest>

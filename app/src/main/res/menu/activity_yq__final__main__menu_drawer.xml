@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home"></item>
+        <item
+            android:id="@+id/nav_facility"
+            android:icon="@drawable/facility"
+            android:title="편의시설" />
+        <item
+            android:id="@+id/nav_recharge"
+            android:icon="@drawable/show_recharge"
+            android:title="충전내역" />
+        <!--
+        <item
+            android:id="@+id/nav_usage"
+            android:icon="@drawable/ic_lock_black_24dp"
+            android:title="사용내역" />
+
+            -->
+        <item
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/powerbutton"
+            android:title="로그아웃" />
+        <!--
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+        -->
+    </group>
+
+
+    <item android:title="정산">
+        <menu>
+           <item
+               android:id="@+id/show_recharge"
+               android:title="충전조회"
+               android:icon="@drawable/show_rechrage_usage"/>
+
+
+            <item
+                android:id="@+id/show_usage"
+                android:title="사용조회"
+                android:icon="@drawable/show_rechrage_usage"/>
+        </menu>
+
+    </item>
+
+    <item android:title="도움말">
+        <menu>
+            <item
+                android:id="@+id/intro_app"
+                android:icon="@drawable/information"
+                android:title="어플소개" />
+            <item
+                android:id="@+id/create_by"
+                android:icon="@drawable/madebypeople"
+                android:title="만든 사람들" />
+        </menu>
+    </item>
+
+</menu>
