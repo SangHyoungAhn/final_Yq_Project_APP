@@ -5,9 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -19,6 +21,14 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Student_Info_Page extends Fragment {
+
+
+
+    TextView info_Stu_id;
+    TextView info_Stu_name;
+    TextView info_Stu_change;
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -55,10 +65,7 @@ public class Student_Info_Page extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -67,6 +74,25 @@ public class Student_Info_Page extends Fragment {
         // Inflate the layout for this fragment
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("학생 정보");
         View view= inflater.inflate(R.layout.fragment_student__info__page, container, false);
+
+
+
+        info_Stu_id=(TextView)view.findViewById(R.id.info_stu_id);
+        info_Stu_id.setText(getActivity().getIntent().getExtras().getString("stu_id"));
+
+
+        // Log.d("1234ddd",Student_Login_Page.stu_name);
+
+        info_Stu_name=(TextView)view.findViewById(R.id.info_stu_name);
+        info_Stu_name.setText(getActivity().getIntent().getExtras().getString("stu_name"));
+
+
+        info_Stu_change=(TextView)view.findViewById(R.id.info_stu_change);
+        info_Stu_change.setText(getActivity().getIntent().getExtras().getString("stu_change"));
+
+
+
+
         return view;
     }
   /*

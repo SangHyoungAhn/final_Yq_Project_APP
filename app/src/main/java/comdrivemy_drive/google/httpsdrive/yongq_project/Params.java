@@ -9,10 +9,6 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 
 
-/**
- * Created by mapl0 on 2017-09-08.
- */
-
 public class Params {
 
     ArrayList<NameValuePair> params;

@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,10 +21,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 
 public class YQ_Final_Main_Menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
 
 
@@ -32,23 +34,24 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /*
+        menu_stu_name=(TextView)findViewById(R.id.menu_bar_stu_name);
+        menu_stu_name.setText(Student_Login_Page.stu_name);
 
 
+        menu_stu_id=(TextView)findViewById(R.id.menu_bar_stu_id);
+        menu_stu_id.setText(Student_Login_Page.stu_id);
+        */
 
 
         setContentView(R.layout.activity_yq__final__main__menu);
-
-        //  menu_Fragment = (LinearLayout)findViewById(R.id.menu_Fragment);
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-       // getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
         getSupportActionBar().setTitle("학생 메뉴");
 
 
+
+       // Log.d("1234d",Student_Login_Page.stu_name);
 
         //정보 이동
         Button InfoButton = (Button)findViewById(R.id.Stu_Info);
@@ -57,6 +60,10 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
 
                 FragmentManager fM = getSupportFragmentManager();
                 FragmentTransaction fT = fM.beginTransaction();
+                getIntent().putExtra("stu_name",Student_Login_Page.stu_name);
+                getIntent().putExtra("stu_id",Student_Login_Page.stu_id);
+                getIntent().putExtra("stu_change",Student_Login_Page.stu_change);
+               // getIntent().putExtra("stu_change",getIntent().getExtras().getString("stu_change"));
                 fT.replace(R.id.contents, new Student_Info_Page());
                 fT.commit();
 
@@ -87,6 +94,9 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
         MenuButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+
+
+
 
                 FragmentManager fM = getSupportFragmentManager();
                 FragmentTransaction fT = fM.beginTransaction();
@@ -171,6 +181,15 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        TextView menu_stu_name=(TextView)nav_header_view.findViewById(R.id.menu_bar_stu_name);
+        menu_stu_name.setText(Student_Login_Page.stu_name);
+
+
+        TextView menu_stu_id=(TextView)nav_header_view.findViewById(R.id.menu_bar_stu_id);
+        menu_stu_id.setText(Student_Login_Page.stu_id);
+
     }
     @Override
     public void onBackPressed() {
@@ -213,9 +232,8 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
         if (id == R.id.nav_home){
            // Intent homeIntent =  new Intent(YQ_Final_Main_Menu.this, YQ_Final_Main_Menu.class);
             //YQ_Final_Main_Menu.this.startActivity(homeIntent);
-
-            Intent intent = new Intent(YQ_Final_Main_Menu.this , YQ_Final_Main_Menu.class);
-            YQ_Final_Main_Menu.this.startActivity(intent);
+            Intent intent = new Intent(this, YQ_Final_Main_Menu.class);
+            this.startActivity(intent);
         }
           else if(id == R.id.nav_facility) {
 
