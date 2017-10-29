@@ -50,8 +50,10 @@ public class HttpNetwork extends AsyncTask<String, Void, String> {
 
         this.delegate = delegate;
         this.params = params;
-        this.execute("http://192.168.1.12:8080/final_Yq_Project/outputServer/" + URL);
+        this.execute("http://192.168.25.58:8080/final_Yq_Project/outputServer/" + URL);
 
+        //192.168.25.38
+        //192.168.1.12
     }
 
     @Override
@@ -162,3 +164,57 @@ public class HttpNetwork extends AsyncTask<String, Void, String> {
         return new String(total);
     }
 }
+
+/*
+               new AsyncTask<Void, Void, Void>() {
+
+                    protected void onPostExecute(Void aVoid) {
+
+                        super.onPostExecute(aVoid);
+                        Params params = new Params();
+                        params.add("stu_id",idText.getText().toString());
+
+                        new HttpNetwork("login_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse()
+
+                        {
+
+                            @Override
+                            public void onSuccess(String response) {
+
+                                JSONObject json = null;
+
+                                try {
+
+                                    JSONArray userArr = new JSONArray(response);
+                                    for (int i = 0; i < userArr.length(); i++) {
+
+                                        JSONObject jOb = new JSONObject(userArr.get(i).toString());
+
+                                        ArrayList<String> userList = new ArrayList<String>();
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(String response) {
+
+                            }
+
+                            @Override
+                            public void onPreExcute() {
+                            }
+                        });
+                    }
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        return null;
+                    }
+
+
+                }.execute();
+
+ */

@@ -1,12 +1,21 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +35,12 @@ public class Menu_Hwan extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    TableLayout tableLayout;
+    TableRow tableRow1;
+    TableRow madeRow;
+
 
     //private OnFragmentInteractionListener mListener;
 
@@ -53,17 +68,131 @@ public class Menu_Hwan extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      View view = inflater.inflate(R.layout.fragment_menu__hwan,container,false);
+        View view = inflater.inflate(R.layout.fragment_menu__hwan,container,false);
+
+        Bundle bundle = this.getArguments();
+        bundle.getStringArrayList("HwanMenu");
+        ArrayList<String> Hwan = new ArrayList<String>();
+        Hwan=bundle.getStringArrayList("HwanMenu");
+        Log.d("Hwa 1234",Hwan.toString());
+
+
+        tableLayout = (TableLayout)view.getRootView().findViewById(R.id.hwanTable);
+
+        //when create table automatically, tableRow1 is fixed row.
+        tableRow1 = new TableRow(getActivity());
+        tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
+
+
+        TextView view_menu_sort = new TextView(getActivity());
+        view_menu_sort.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_menu_sort.setTextSize(20);
+        view_menu_sort.setText("종류");
+        view_menu_sort.setTextColor(Color.WHITE);
+        tableRow1.addView(view_menu_sort);
+
+        TextView view_menu_name = new TextView(getActivity());
+        view_menu_name.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_menu_name.setTextSize(20);
+        view_menu_name.setText("메뉴명");
+        view_menu_name.setTextColor(Color.WHITE);
+        tableRow1.addView(view_menu_name);
+
+        TextView view_Price = new TextView(getActivity());
+        view_Price.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_Price.setTextSize(20);
+        view_Price.setText("가격");
+        view_Price.setTextColor(Color.WHITE);
+        tableRow1.addView(view_Price);
+
+        TextView view_soldOut = new TextView(getActivity());
+        view_soldOut.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_soldOut.setTextSize(20);
+        view_soldOut.setText("매진");
+        view_soldOut.setTextColor(Color.WHITE);
+        tableRow1.addView(view_soldOut);
+
+        tableLayout.addView(tableRow1, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        int i;
+        for(i=0; i<Hwan.size(); i++){
+
+            i = 6*i;
+            if(i>=Hwan.size()){
+                break;
+            }
+            ArrayList<String>hwanLastList = new ArrayList<String>();
+            hwanLastList.add(Hwan.get(i).toString());
+            hwanLastList.add(Hwan.get(i+1).toString());
+            hwanLastList.add(Hwan.get(i+2).toString());
+            hwanLastList.add(Hwan.get(i+3).toString());
+            hwanLastList.add(Hwan.get(i+4).toString());
+            hwanLastList.add(Hwan.get(i+5).toString());
+
+            i=i/6;
+
+            Log.d("correctHwanList",hwanLastList.toString());
+            for(int j=1; j<2; j++){
+
+
+                madeRow = new TableRow(getActivity());
+                madeRow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+
+                TextView hwanTypeText = new TextView(getActivity());
+                hwanTypeText.setId(10+j);
+                hwanTypeText.setText(hwanLastList.get(2).toString());
+                hwanTypeText.setTextColor(Color.parseColor("#616161"));
+                hwanTypeText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanTypeText.setTextSize(17);
+                madeRow.addView(hwanTypeText);
+
+
+                TextView hwanMenuText= new TextView(getActivity());
+                hwanMenuText.setId(50+j);
+                hwanMenuText.setText(hwanLastList.get(3).toString());
+                hwanMenuText.setTextColor(Color.parseColor("#616161"));
+                hwanMenuText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanMenuText.setTextSize(17);
+                madeRow.addView(hwanMenuText);
+
+
+                TextView hwanPriceText= new TextView(getActivity());
+                hwanPriceText.setId(90+j);
+                hwanPriceText.setText(hwanLastList.get(4).toString());
+                hwanPriceText.setTextColor(Color.parseColor("#616161"));
+                hwanPriceText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanPriceText.setTextSize(17);
+                madeRow.addView(hwanPriceText);
+
+                TextView hwanSoldText = new TextView(getActivity());
+                hwanSoldText.setId(130+j);
+                hwanSoldText.setText(hwanLastList.get(5).toString());
+                hwanSoldText.setTextColor(Color.parseColor("#616161"));
+                hwanSoldText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanSoldText.setTextSize(17);
+                madeRow.addView(hwanSoldText);
+
+                tableLayout.addView(madeRow,  new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+            }
+        }
+
+
+
+
+
         return view;
     }
  /*

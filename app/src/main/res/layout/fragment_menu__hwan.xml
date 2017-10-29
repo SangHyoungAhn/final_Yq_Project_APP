@@ -1,288 +1,21 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="*"
     tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Menu_Insung">
 
 
     <!-- 메뉴 표제목 -->
-    <TableRow
+    <TableLayout
+        android:id="@+id/hwanTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:background="#616161"
-
-        android:padding="1dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:text="종 류"
-            android:background="#0091EA"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:text="메뉴명 "
-            android:background="#0091EA"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:background="#0091EA"
-            android:textColor="#FFFFFF"
-            android:text="가 격"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:text="매 진"
-            android:layout_marginLeft="1dp"
-            android:background="#0091EA"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            />
-    </TableRow>
+        android:stretchColumns="*">
 
 
-
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="한식(직화)"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="돼지국밥"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3500"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:layout_marginLeft="1dp"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="한식(직화)"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="제육불고기"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3000"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
-            android:text=" O "
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="양식(일품)"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="치즈돈까스"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3500"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
-            android:text=" "
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="양식(프리미엄)"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="모듬돈까스"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="4000"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:layout_marginLeft="1dp"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="스낵(일품)"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="만두라면"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2500"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
-            android:text=" "
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-    </TableRow>
+    </TableLayout>
+        <!--
 
     <TableRow
         android:layout_width="match_parent"
@@ -333,5 +66,8 @@
             />
     </TableRow>
 
-</TableLayout>
+    -->
+
+
+</ScrollView>
 

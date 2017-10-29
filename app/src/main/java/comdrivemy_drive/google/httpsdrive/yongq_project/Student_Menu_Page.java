@@ -51,14 +51,16 @@ public class Student_Menu_Page extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
+    public static ArrayList<String>insungMenu = new ArrayList<String>();
+
+    public static ArrayList<String>hwanMenu = new ArrayList<String>();
+    public static ArrayList<String>DormMenu = new ArrayList<String>();
+    TextView dateNow;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    // private Fragment fragment;
-    // private FragmentManager fragmentManager;
-
-    TextView dateNow;
 
     public Student_Menu_Page() {
         // Required empty public constructor
@@ -143,6 +145,13 @@ public class Student_Menu_Page extends Fragment {
     }
     */
 
+    public static void Init(ArrayList<String>list){
+
+        list.clear();
+        return;
+    }
+
+
     //날짜 받아오기
     private String date() {
         long now = System.currentTimeMillis();
@@ -159,9 +168,45 @@ public class Student_Menu_Page extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        View view = inflater.inflate(R.layout.fragment_student__menu__page, container, false);
+
+        tabLayout = (TabLayout)view.findViewById(R.id.sliding_tabs);
+        tabLayout.addTab(tabLayout.newTab().setText("인성관"));
+        tabLayout.addTab(tabLayout.newTab().setText("환과대"));
+        tabLayout.addTab(tabLayout.newTab().setText("기숙사"));
+
+
+        final ViewPager pager = (ViewPager)view.findViewById(R.id.viewPager);
+
+        final PagerAdapter adapter = new PagerAdapter(getChildFragmentManager(),tabLayout.getTabCount());
+        pager.setAdapter(adapter);
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+            //탭의 선택 상태가 변경될 때 호출되는 리스너
+            //addOnTabSelectedListener를 통해 설정
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pager.setCurrentItem(tab.getPosition());
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+
+
+            }
+        });
 
         Params params =new Params();
-
+        params.add("stu_id","201233008");
         new HttpNetwork("menu_Info.jsp",params.getParams(),new HttpNetwork.AsyncResponse(){
             @Override
             public void onSuccess(String response) {
@@ -171,6 +216,9 @@ public class Student_Menu_Page extends Fragment {
                 try{
 
                     JSONArray menuArr =new JSONArray(response);
+                    Init(insungMenu);
+                    Init(hwanMenu);
+                    Init(DormMenu);
 
                     for(int i=0; i<menuArr.length();i++){
 
@@ -182,14 +230,56 @@ public class Student_Menu_Page extends Fragment {
                         menuList.add(menuOb.getString("mn_type"));
                         menuList.add(menuOb.getString("mn_name"));
                         menuList.add(menuOb.getString("mn_price"));
+                        menuList.add(menuOb.getString("mn_sold"));
 
 
+                        if(menuList.get(1).equals("인성관")){
+                           // for(int j=i; j<menuList.size(); j++) {
+                                //Init(insungMenu);
+                                insungMenu.add(menuList.get(0).toString());
+                                insungMenu.add(menuList.get(1).toString());
+                                insungMenu.add(menuList.get(2).toString());
+                                insungMenu.add(menuList.get(3).toString());
+                                insungMenu.add(menuList.get(4).toString());
+                                insungMenu.add(menuList.get(5).toString());
+
+
+
+                            //}
+                        }
+
+
+                        if(menuList.get(1).equals("환경과학대")){
+
+
+                            hwanMenu.add(menuList.get(0).toString());
+                            hwanMenu.add(menuList.get(1).toString());
+                            hwanMenu.add(menuList.get(2).toString());
+                            hwanMenu.add(menuList.get(3).toString());
+                            hwanMenu.add(menuList.get(4).toString());
+                            hwanMenu.add(menuList.get(5).toString());
+
+
+                        }
+
+                        if(menuList.get(1).equals("생활관")){
+
+                            DormMenu.add(menuList.get(0).toString());
+                            DormMenu.add(menuList.get(1).toString());
+                            DormMenu.add(menuList.get(2).toString());
+                            DormMenu.add(menuList.get(3).toString());
+                            DormMenu.add(menuList.get(4).toString());
+                            DormMenu.add(menuList.get(5).toString());
+
+                        }
 
                         Log.d("12kkk",menuList.toString());
 
+
                     }
-
-
+                    Log.d("13kkk",insungMenu.toString());
+                    Log.d("13kkH",hwanMenu.toString());
+                    Log.d("13kkd",DormMenu.toString());
 
                 }catch(JSONException e){
                     e.printStackTrace();
@@ -207,62 +297,10 @@ public class Student_Menu_Page extends Fragment {
             }
         });
 
-
-
-
-
-        View view = inflater.inflate(R.layout.fragment_student__menu__page, container, false);
-
-        tabLayout = (TabLayout)view.findViewById(R.id.sliding_tabs);
-        tabLayout.addTab(tabLayout.newTab().setText("인성관"));
-        tabLayout.addTab(tabLayout.newTab().setText("환과대"));
-        tabLayout.addTab(tabLayout.newTab().setText("기숙사"));
-
-
-        final ViewPager pager = (ViewPager)view.findViewById(R.id.viewPager);
-
-        final PagerAdapter adapter = new PagerAdapter(getChildFragmentManager(),tabLayout.getTabCount());
-        pager.setAdapter(adapter);
-        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-
-
-
-
-
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-
-            //탭의 선택 상태가 변경될 때 호출되는 리스너
-            //addOnTabSelectedListener를 통해 설정
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                pager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-
-        // ((AppCompatActivity)getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
-
-//            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        //          ((AppCompatActivity) getActivity()).getSupportActionBar().setCustomView(R.layout.action_bar);
-
         //Fragment 안에 버튼이 위치할 때는 페이지(액티비티) 이동이 가능하지만, 프래그먼트 이동은 불가능하다
-
 
         dateNow = (TextView) view.findViewById(R.id.text_date);
         dateNow.setText(date());
-
         return view;
 
     }
@@ -274,6 +312,7 @@ public class Student_Menu_Page extends Fragment {
         //탭의 수
         int num_tab;
 
+
         public PagerAdapter(FragmentManager fm, int numOfTabs) {
             super(fm);
             this.num_tab = numOfTabs;
@@ -283,17 +322,39 @@ public class Student_Menu_Page extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
+
                     Menu_Insung Insung= new Menu_Insung();
-
-
-
+                    Bundle bundle =new Bundle();
+                    bundle.putStringArrayList("insungMenu",insungMenu);
+                    Log.d("kkk12",insungMenu.toString());
+                    Insung.setArguments(bundle);
                     return Insung;
+
                 case 1:
+
+
                     Menu_Hwan Hwan = new Menu_Hwan();
+                    Bundle bundle2 =new Bundle();
+                    bundle2.putStringArrayList("HwanMenu",hwanMenu);
+                    Log.d("kkk1234",hwanMenu.toString());
+                    Hwan.setArguments(bundle2);
+
                     return Hwan;
+
                 case 2:
+
+
+
                     Menu_Dorm Dorm = new Menu_Dorm();
+                    Bundle bundle3 = new Bundle();
+                    bundle3.putStringArrayList("DormMenu",DormMenu);
+                    Log.d("kkk12345",DormMenu.toString());
+                    Dorm.setArguments(bundle3);
+
                     return Dorm;
+
+
+
                 default:
                     return null;
             }

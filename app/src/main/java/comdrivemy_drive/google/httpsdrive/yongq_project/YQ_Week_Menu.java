@@ -11,9 +11,16 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -34,9 +41,25 @@ public class YQ_Week_Menu extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+    public static ArrayList<String>insungWeekMenu = new ArrayList<String>();
+    public static ArrayList<String>hwanWeekMenu = new ArrayList<String>();
+    public static ArrayList<String>dormWeekMenu = new ArrayList<String>();
+
    //private OnFragmentInteractionListener mListener;
 
     TabLayout tabLayout;
+
+    public void Init(ArrayList<String> list){
+
+        list.clear();
+        return;
+
+
+
+    }
+
+
 
 
     public YQ_Week_Menu() {
@@ -69,16 +92,6 @@ public class YQ_Week_Menu extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-
-    public void onBackPressed(){
-
-        this.finish();
-    }
-
-    private void finish() {
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -124,6 +137,96 @@ public class YQ_Week_Menu extends Fragment {
 
             }
         });
+
+        Params params =new Params();
+
+        new HttpNetwork("menuWeek_Info.jsp",params.getParams(),new HttpNetwork.AsyncResponse(){
+            @Override
+            public void onSuccess(String response) {
+
+                JSONObject json =null;
+
+                try{
+
+                    JSONArray weekmenuArr =new JSONArray(response);
+                    Init(insungWeekMenu);
+                    Init(hwanWeekMenu);
+                    Init(dormWeekMenu);
+
+
+                    for(int i=0; i<weekmenuArr.length();i++){
+
+                        JSONObject menuWeekOb = new JSONObject(weekmenuArr.get(i).toString());
+
+                        ArrayList<String> menuWeekList = new ArrayList<String>();
+
+                        menuWeekList.add(menuWeekOb.getString("mn_date"));
+                        menuWeekList.add(menuWeekOb.getString("chain"));
+                        menuWeekList.add(menuWeekOb.getString("mn_type"));
+                        menuWeekList.add(menuWeekOb.getString("mn_name"));
+                        menuWeekList.add(menuWeekOb.getString("mn_price"));
+
+                        Log.d("skt1",menuWeekList.toString());
+                        if(menuWeekList.get(1).equals("환경과학대")){
+
+
+                            hwanWeekMenu.add(menuWeekList.get(0).toString());
+                            hwanWeekMenu.add(menuWeekList.get(1).toString());
+                            hwanWeekMenu.add(menuWeekList.get(2).toString());
+                            hwanWeekMenu.add(menuWeekList.get(3).toString());
+                            hwanWeekMenu.add(menuWeekList.get(4).toString());
+
+                        }
+
+
+                        if(menuWeekList.get(1).equals("인성관")){
+
+                            insungWeekMenu.add(menuWeekList.get(0).toString());
+                            insungWeekMenu.add(menuWeekList.get(1).toString());
+                            insungWeekMenu.add(menuWeekList.get(2).toString());
+                            insungWeekMenu.add(menuWeekList.get(3).toString());
+                            insungWeekMenu.add(menuWeekList.get(4).toString());
+
+                        }
+
+                        if(menuWeekList.get(1).equals("생활관")){
+
+                            dormWeekMenu.add(menuWeekList.get(0).toString());
+                            dormWeekMenu.add(menuWeekList.get(1).toString());
+                            dormWeekMenu.add(menuWeekList.get(2).toString());
+                            dormWeekMenu.add(menuWeekList.get(3).toString());
+                            dormWeekMenu.add(menuWeekList.get(4).toString());
+
+                        }
+
+
+                        Log.d("weekkk",menuWeekList.toString());
+
+
+                    }
+                    Log.d("weekInsung",insungWeekMenu.toString());
+                    Log.d("weekHwan",hwanWeekMenu.toString());
+                    Log.d("weekDorm",dormWeekMenu.toString());
+
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(String response) {
+
+            }
+
+            @Override
+            public void onPreExcute() {
+
+            }
+        });
+
+
+
+
         return view;
     }
 
@@ -144,13 +247,36 @@ public class YQ_Week_Menu extends Fragment {
             switch(position){
                 case 0:
                     Week_Menu_Insung week_Insung = new Week_Menu_Insung();
+
+                    Bundle bundle =new Bundle();
+                    bundle.putStringArrayList("weekmenuInsung",insungWeekMenu);
+                    Log.d("weekmenuInsung",insungWeekMenu.toString());
+                    week_Insung.setArguments(bundle);
+
+
                     return week_Insung;
+
                 case 1:
                     Week_Menu_Hwan week_Hwan = new Week_Menu_Hwan();
+
+
+                    Bundle bundle2 =new Bundle();
+                    bundle2.putStringArrayList("weekmenuHwan",hwanWeekMenu);
+                    Log.d("weekmenuHwan",hwanWeekMenu.toString());
+                    week_Hwan.setArguments(bundle2);
+
                     return week_Hwan;
+
                 case 2:
                     Week_Menu_Dorm week_Dorm = new Week_Menu_Dorm();
+
+                    Bundle bundle3 =new Bundle();
+                    bundle3.putStringArrayList("weekmenuDorm",dormWeekMenu);
+                    Log.d("weekmenuDorm",dormWeekMenu.toString());
+                    week_Dorm.setArguments(bundle3);
+
                     return week_Dorm;
+
                 default:
                     return null;
             }

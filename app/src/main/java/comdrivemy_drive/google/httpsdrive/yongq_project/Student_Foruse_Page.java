@@ -2,14 +2,22 @@ package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -33,8 +41,18 @@ public class Student_Foruse_Page extends Fragment implements View.OnClickListene
     private Button UseWeekBtn;
     private Button UseMonthBtn;
     private Button UseThMonthBtn;
+    Fragment fragment;
+
+    public static ArrayList<String> UsageWeekList = new ArrayList<String>();
 
     //private OnFragmentInteractionListener mListener;
+
+    public void Init(ArrayList<String> list){
+
+        list.clear();
+        return ;
+    }
+
 
     public static Student_Foruse_Page newInstance() {
         // Required empty public constructor
@@ -67,11 +85,16 @@ public class Student_Foruse_Page extends Fragment implements View.OnClickListene
         UseWeekBtn = (Button)view.findViewById(R.id.UseWeekBtn);
         UseWeekBtn.setOnClickListener(this);
 
+
+
         UseMonthBtn= (Button)view.findViewById(R.id.UseMonthBtn);
         UseMonthBtn.setOnClickListener(this);
 
         UseThMonthBtn= (Button)view.findViewById(R.id.UseThMonthBtn);
         UseThMonthBtn.setOnClickListener(this);
+
+
+
 
 
         return view;
@@ -80,13 +103,83 @@ public class Student_Foruse_Page extends Fragment implements View.OnClickListene
 
     public void onClick(View view){
 
-        Fragment fragment;
+        //Fragment fragment;
         switch(view.getId()){
 
+
             case R.id.UseWeekBtn:
+
+                        Params params = new Params();
+                        params.add("stu_id",Student_Login_Page.stu_id);
+                        new HttpNetwork("stuViewUse_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse()
+                        {
+                            @Override
+                            public void onSuccess(String response) {
+
+
+                                JSONObject json = null;
+
+                                try {
+
+
+                                    JSONArray useWeekArr = new JSONArray(response);
+                                    Init(UsageWeekList);
+                                    Log.d("kk245",useWeekArr.toString());
+
+                                    for (int i = 0; i < useWeekArr.length(); i++) {
+
+                                        JSONObject jOb = new JSONObject(useWeekArr.get(i).toString());
+
+
+                                        ArrayList<String> useWeekList = new ArrayList<String>();
+
+                                        useWeekList.add(jOb.getString("date"));
+                                        useWeekList.add(jOb.getString("stu_id"));
+                                        useWeekList.add(jOb.getString("chain"));
+                                        useWeekList.add(jOb.getString("mn_price"));
+                                        useWeekList.add(jOb.getString("mn_name"));
+                                        useWeekList.add(jOb.getString("f_use"));
+
+
+                                        UsageWeekList.add(useWeekList.get(0).toString());
+                                        UsageWeekList.add(useWeekList.get(1).toString());
+                                        UsageWeekList.add(useWeekList.get(2).toString());
+                                        UsageWeekList.add(useWeekList.get(3).toString());
+                                        UsageWeekList.add(useWeekList.get(4).toString());
+                                        UsageWeekList.add(useWeekList.get(5).toString());
+                                        Log.d("use123",useWeekList.toString());
+                                    }
+
+
+                                    Log.d("123235555d",UsageWeekList.toString());
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(String response) {
+
+                            }
+
+                            @Override
+                            public void onPreExcute() {
+                            }
+                        });
+
+                Log.d("kk2134a",UsageWeekList.toString());
+
+
+
+                Log.d("kk2134a",UsageWeekList.toString());
                 fragment=Usage_Week.newInstance();
+                Log.d("kk2134b",UsageWeekList.toString());
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("useWeekList",UsageWeekList);
+                Log.d("kk2134c",UsageWeekList.toString());
+                fragment.setArguments(bundle);
+
                 setChildFragment(fragment);
-                break;
 
             case R.id.UseMonthBtn:
                 fragment=Usage_Month.newInstance();

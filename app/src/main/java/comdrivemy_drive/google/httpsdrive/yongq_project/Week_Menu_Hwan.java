@@ -1,12 +1,20 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,6 +34,10 @@ public class Week_Menu_Hwan extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TableLayout tableLayout;
+    TableRow tableRow1;
+    TableRow madeRow;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -65,6 +77,123 @@ public class Week_Menu_Hwan extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_week__menu__hwan, container, false);
+
+        Bundle bundle = this.getArguments();
+        bundle.getStringArrayList("weekmenuHwan");
+        ArrayList<String>HwanWeekMenu = new ArrayList<String>();
+        HwanWeekMenu=bundle.getStringArrayList("weekmenuHwan");
+
+
+        tableLayout = (TableLayout)view.getRootView().findViewById(R.id.hwanWeekTable);
+
+        tableRow1 = new TableRow(getActivity());
+        tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
+
+        TextView view_menu_date = new TextView(getActivity());
+        view_menu_date.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_menu_date.setTextSize(20);
+        view_menu_date.setText("날짜");
+        view_menu_date.setTextColor(Color.WHITE);
+        tableRow1.addView(view_menu_date);
+
+
+
+        TextView view_menu_sort = new TextView(getActivity());
+        view_menu_sort.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_menu_sort.setTextSize(20);
+        view_menu_sort.setText("종류");
+        view_menu_sort.setTextColor(Color.WHITE);
+        tableRow1.addView(view_menu_sort);
+
+
+        TextView view_menu_name = new TextView(getActivity());
+        view_menu_name.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_menu_name.setTextSize(20);
+        view_menu_name.setText("메뉴명");
+        view_menu_name.setTextColor(Color.WHITE);
+        tableRow1.addView(view_menu_name);
+
+        TextView view_Price = new TextView(getActivity());
+        view_Price.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_Price.setTextSize(20);
+        view_Price.setText("가격");
+        view_Price.setTextColor(Color.WHITE);
+        tableRow1.addView(view_Price);
+
+
+        tableLayout.addView(tableRow1, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        int i;
+        for(i=0; i<HwanWeekMenu.size(); i++){
+
+
+            i=5*i;
+            if(i >= HwanWeekMenu.size()){
+                break;
+            }
+
+            ArrayList<String> hwanWeekLastList = new ArrayList<String>();
+            hwanWeekLastList.add(HwanWeekMenu.get(i).toString());
+            hwanWeekLastList.add(HwanWeekMenu.get(i + 1).toString());
+            hwanWeekLastList.add(HwanWeekMenu.get(i + 2).toString());
+            hwanWeekLastList.add(HwanWeekMenu.get(i + 3).toString());
+            hwanWeekLastList.add(HwanWeekMenu.get(i + 4).toString());
+            i = i / 5;
+
+            Log.d("correctHwanWeekList", hwanWeekLastList.toString());
+            for(int j =1; j<2; j++){
+
+
+                madeRow=new TableRow(getActivity());
+                madeRow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+                TextView hwanWeekDateText = new TextView(getActivity());
+                hwanWeekDateText.setId(160+j);
+                hwanWeekDateText.setText(hwanWeekLastList.get(0).toString());
+                hwanWeekDateText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanWeekDateText.setTextColor(Color.parseColor("#616161"));
+                hwanWeekDateText.setTextSize(17);
+                madeRow.addView(hwanWeekDateText);
+
+
+
+                TextView hwanWeekTypeText = new TextView(getActivity());
+                hwanWeekTypeText.setId(10+j);
+                hwanWeekTypeText.setText(hwanWeekLastList.get(2).toString());
+                hwanWeekTypeText.setTextColor(Color.parseColor("#616161"));
+                hwanWeekTypeText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanWeekTypeText.setTextSize(17);
+                madeRow.addView(hwanWeekTypeText);
+
+
+                TextView hwanWeekMenuText = new TextView(getActivity());
+                hwanWeekMenuText.setId(60+j);
+                hwanWeekMenuText.setText(hwanWeekLastList.get(3).toString());
+                hwanWeekMenuText.setTextColor(Color.parseColor("#616161"));
+                hwanWeekMenuText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanWeekMenuText.setTextSize(17);
+                madeRow.addView(hwanWeekMenuText);
+
+
+                TextView hwanWeekPriceText = new TextView(getActivity());
+                hwanWeekPriceText.setId(110+j);
+                hwanWeekPriceText.setText(hwanWeekLastList.get(4).toString());
+                hwanWeekPriceText.setTextColor(Color.parseColor("#616161"));
+                hwanWeekPriceText.setGravity(Gravity.CENTER_HORIZONTAL);
+                hwanWeekPriceText.setTextSize(17);
+                madeRow.addView(hwanWeekPriceText);
+
+
+                tableLayout.addView(madeRow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+
+
+            }
+
+
+        }
+
         return view;
 
     }

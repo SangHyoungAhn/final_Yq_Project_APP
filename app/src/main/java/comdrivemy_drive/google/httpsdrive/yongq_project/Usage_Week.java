@@ -1,12 +1,22 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -55,6 +65,88 @@ public class Usage_Week extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_usage__week, container, false);
+
+
+        Bundle bundle = this.getArguments();
+        bundle.getStringArrayList("useWeekList");
+        ArrayList<String> useWeekStu = new ArrayList<String>();
+        useWeekStu =bundle.getStringArrayList("useWeekList");
+
+        Log.d("bung",useWeekStu.toString());
+/*
+
+        new AsyncTask<Void, Void, Void>() {
+
+            protected void onPostExecute(Void aVoid) {
+
+                super.onPostExecute(aVoid);
+                Params params = new Params();
+                params.add("stu_id",Student_Login_Page.stu_id);
+
+                new HttpNetwork("stuViewUse_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse()
+                {
+                    @Override
+                    public void onSuccess(String response) {
+
+
+                        JSONObject json = null;
+
+                        try {
+                            Log.d("useKk","hello");
+
+                            JSONArray useWeekArr = new JSONArray(response);
+
+
+                            Log.d("kk245",useWeekArr.toString());
+
+                            for (int i = 0; i < useWeekArr.length(); i++) {
+
+
+                                JSONObject jOb = new JSONObject(useWeekArr.get(i).toString());
+
+
+                                ArrayList<String> useWeekList = new ArrayList<String>();
+
+                                useWeekList.add(jOb.getString("date"));
+                                useWeekList.add(jOb.getString("stu_id"));
+                                useWeekList.add(jOb.getString("chain"));
+                                useWeekList.add(jOb.getString("mn_price"));
+                                useWeekList.add(jOb.getString("mn_name"));
+
+
+                                useWeekList.add(jOb.getString("f_use"));
+
+
+                                Log.d("use123",useWeekList.toString());
+                            }
+
+
+                             Log.d("123235555d","bye");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+
+                    }
+
+                    @Override
+                    public void onPreExcute() {
+                    }
+                });
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                return null;
+            }
+
+
+        }.execute();
+
+
+*/
         return view;
 
     }
