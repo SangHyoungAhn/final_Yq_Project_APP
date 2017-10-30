@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 public class YQ_Gift_Barcode extends AppCompatActivity {
 
 
@@ -104,6 +107,43 @@ public class YQ_Gift_Barcode extends AppCompatActivity {
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         // 확인시 처리 로직
+
+
+
+                                        Params params = new Params();
+                                        params.add("send_id", Student_Login_Page.stu_id);
+                                        params.add("mn_price",stu_price.getText().toString());
+                                        params.add("re_id",stu_num.getText().toString());
+
+                                        new HttpNetwork("stuGift_Info.jsp",params.getParams(), new HttpNetwork.AsyncResponse()
+                                        {
+                                            @Override
+                                            public void onSuccess (String response){
+
+                                                try {
+                                                    //필요없는 부분
+                                                    JSONArray useMthArr = new JSONArray(response);
+
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                            @Override
+                                            public void onFailure (String response){
+                                            }
+                                            @Override
+                                            public void onPreExcute () {
+                                            }
+                                        });
+
+
+
+
+
+
+
+
+
 
                                         Intent intent = new Intent( YQ_Gift_Barcode.this, YQ_Gift_Payment.class);
                                         intent.putExtra("menu_Info",K);

@@ -2,14 +2,19 @@ package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -37,11 +42,23 @@ public class Usage_Week extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    TableLayout tableLayout;
+    TableRow tableRow1;
+    TableRow madeRow;
+    Fragment fragment;
+
     //private OnFragmentInteractionListener mListener;
 
-    public static Usage_Week newInstance() {
+    public static Usage_Week newInstance(String param1, String param2) {
 
-        return new Usage_Week();
+
+
+        Usage_Week fragment = new Usage_Week();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
         // Required empty public constructor
     }
 
@@ -67,86 +84,120 @@ public class Usage_Week extends Fragment {
         View view= inflater.inflate(R.layout.fragment_usage__week, container, false);
 
 
+
         Bundle bundle = this.getArguments();
         bundle.getStringArrayList("useWeekList");
         ArrayList<String> useWeekStu = new ArrayList<String>();
         useWeekStu =bundle.getStringArrayList("useWeekList");
 
         Log.d("bung",useWeekStu.toString());
-/*
-
-        new AsyncTask<Void, Void, Void>() {
-
-            protected void onPostExecute(Void aVoid) {
-
-                super.onPostExecute(aVoid);
-                Params params = new Params();
-                params.add("stu_id",Student_Login_Page.stu_id);
-
-                new HttpNetwork("stuViewUse_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse()
-                {
-                    @Override
-                    public void onSuccess(String response) {
 
 
-                        JSONObject json = null;
+        tableLayout= (TableLayout)view.getRootView().findViewById(R.id.useWeekTable);
 
-                        try {
-                            Log.d("useKk","hello");
+        tableRow1 = new TableRow(getActivity());
+        tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
 
-                            JSONArray useWeekArr = new JSONArray(response);
+        TextView view_weekDate= new TextView(getActivity());
+        view_weekDate.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_weekDate.setTextSize(20);
+        view_weekDate.setText("일자");
+        view_weekDate.setTextColor(Color.WHITE);
+        tableRow1.addView(view_weekDate);
 
-
-                            Log.d("kk245",useWeekArr.toString());
-
-                            for (int i = 0; i < useWeekArr.length(); i++) {
-
-
-                                JSONObject jOb = new JSONObject(useWeekArr.get(i).toString());
-
-
-                                ArrayList<String> useWeekList = new ArrayList<String>();
-
-                                useWeekList.add(jOb.getString("date"));
-                                useWeekList.add(jOb.getString("stu_id"));
-                                useWeekList.add(jOb.getString("chain"));
-                                useWeekList.add(jOb.getString("mn_price"));
-                                useWeekList.add(jOb.getString("mn_name"));
+        TextView view_weekChain = new TextView(getActivity());
+        view_weekChain.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_weekChain.setTextSize(20);
+        view_weekChain.setText("장소");
+        view_weekChain.setTextColor(Color.WHITE);
+        tableRow1.addView(view_weekChain);
 
 
-                                useWeekList.add(jOb.getString("f_use"));
+        TextView view_weekMenu = new TextView(getActivity());
+        view_weekMenu.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_weekMenu.setTextSize(20);
+        view_weekMenu.setText("메뉴명");
+        view_weekMenu.setTextColor(Color.WHITE);
+        tableRow1.addView(view_weekMenu);
 
 
-                                Log.d("use123",useWeekList.toString());
-                            }
+        TextView view_weekPrice = new TextView(getActivity());
+        view_weekPrice.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_weekPrice.setTextSize(20);
+        view_weekPrice.setText("사용금액");
+        view_weekPrice.setTextColor(Color.WHITE);
+        tableRow1.addView(view_weekPrice);
+
+        tableLayout.addView(tableRow1, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        int i;
+        for(i=0; i<useWeekStu.size(); i++){
 
 
-                             Log.d("123235555d","bye");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(String response) {
-
-                    }
-
-                    @Override
-                    public void onPreExcute() {
-                    }
-                });
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                return null;
+            i=6*i;
+            if(i >=useWeekStu.size()){
+                break;
             }
 
+            ArrayList<String>useWeekLastList = new ArrayList<String>();
+            useWeekLastList.add(useWeekStu.get(i).toString());
+            useWeekLastList.add(useWeekStu.get(i+1).toString());
+            useWeekLastList.add(useWeekStu.get(i+2).toString());
+            useWeekLastList.add(useWeekStu.get(i+3).toString());
+            useWeekLastList.add(useWeekStu.get(i+4).toString());
+            useWeekLastList.add(useWeekStu.get(i+5).toString());
 
-        }.execute();
+//0,2,4,3
+            i=i/6;
+            Log.d("useWekk123",useWeekLastList.toString());
+
+            for(int j=1; j<2; j++){
+
+                madeRow = new TableRow(getActivity());
+                madeRow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+                TextView weekDate = new TextView(getActivity());
+                weekDate.setId(10+j);
+                weekDate.setText(useWeekLastList.get(0).toString());
+                weekDate.setTextColor(Color.parseColor("#616161"));
+                weekDate.setGravity(Gravity.CENTER_HORIZONTAL);
+                weekDate.setTextSize(17);
+                madeRow.addView(weekDate);
 
 
-*/
+                TextView weekChain = new TextView(getActivity());
+                weekChain.setId(60+j);
+                weekChain.setText(useWeekLastList.get(2).toString());
+                weekChain.setTextColor(Color.parseColor("#616161"));
+                weekChain.setGravity(Gravity.CENTER_HORIZONTAL);
+                weekChain.setTextSize(17);
+                madeRow.addView(weekChain);
+
+                TextView  weekMenu = new TextView(getActivity());
+                weekMenu.setId(110+j);
+                weekMenu.setText(useWeekLastList.get(4).toString());
+                weekMenu.setTextColor(Color.parseColor("#616161"));
+                weekMenu.setGravity(Gravity.CENTER_HORIZONTAL);
+                weekMenu.setTextSize(17);
+                madeRow.addView(weekMenu);
+
+                TextView weekPrice = new TextView(getActivity());
+                weekPrice.setId(160+j);
+                weekPrice.setText(useWeekLastList.get(3).toString());
+                weekPrice.setTextColor(Color.parseColor("#616161"));
+                weekPrice.setGravity(Gravity.CENTER_HORIZONTAL);
+                weekPrice.setTextSize(17);
+                madeRow.addView(weekPrice);
+
+
+                tableLayout.addView(madeRow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+            }
+
+        }
+
+
         return view;
 
     }

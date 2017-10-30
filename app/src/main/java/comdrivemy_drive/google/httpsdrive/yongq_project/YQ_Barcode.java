@@ -17,6 +17,8 @@ import com.google.zxing.Result;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -123,6 +125,51 @@ public class YQ_Barcode extends AppCompatActivity {
                                  .setMessage("결제하시겠습니까?")
                                  .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                      public void onClick(DialogInterface dialog, int whichButton) {
+
+
+
+                                         Params params = new Params();
+                                         params.add("buy_id", Student_Login_Page.stu_id);
+                                         params.add("mn_price",m_price.getText().toString());
+                                         params.add("mn_chain",m_chain.getText().toString());
+                                         params.add("mn_name",m_name.getText().toString());
+
+                                         new HttpNetwork("stuBuyMenu_Info.jsp",params.getParams(), new HttpNetwork.AsyncResponse()
+                                         {
+                                             @Override
+                                             public void onSuccess (String response){
+
+                                                 try {
+                                                     //필요없는 부분
+                                                     JSONArray useMthArr = new JSONArray(response);
+
+                                                 } catch (JSONException e) {
+                                                     e.printStackTrace();
+                                                 }
+                                             }
+                                             @Override
+                                             public void onFailure (String response){
+                                             }
+                                             @Override
+                                             public void onPreExcute () {
+                                             }
+                                         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                          // 확인시 처리 로직
                                          Intent intent = new Intent(YQ_Barcode.this , YQ_CheckPayment_Page.class);
                                          intent.putExtra("menu_Info",K);

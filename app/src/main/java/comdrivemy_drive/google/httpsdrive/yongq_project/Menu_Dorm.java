@@ -184,36 +184,9 @@ public class Menu_Dorm extends Fragment {
 
                 tableLayout.addView(madeRow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-
-
-
-
-
             }
 
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         return view;
 

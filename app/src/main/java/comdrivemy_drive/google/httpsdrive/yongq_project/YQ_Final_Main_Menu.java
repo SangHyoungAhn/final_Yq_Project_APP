@@ -98,21 +98,6 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
             public void onClick(View v) {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 FragmentManager fM = getSupportFragmentManager();
                 FragmentTransaction fT = fM.beginTransaction();
                 fT.replace(R.id.contents, new Student_Menu_Page());
@@ -178,7 +163,7 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
             public void onClick(View v){
 
                 FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
-                fT.replace(R.id.contents, Student_Foruse_Page.newInstance());
+                fT.replace(R.id.contents, new Student_Foruse_Page());
                 fT.commit();
             }
 

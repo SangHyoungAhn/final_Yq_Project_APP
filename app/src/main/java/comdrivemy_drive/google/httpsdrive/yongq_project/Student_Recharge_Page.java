@@ -9,11 +9,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -70,18 +78,6 @@ public class Student_Recharge_Page extends Fragment {
         }
     }
 
-
-    /*
-
-
-
-
-
-
-
-
-
-    */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,6 +85,9 @@ public class Student_Recharge_Page extends Fragment {
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("충 전");
         View view =inflater.inflate(R.layout.fragment_student__recharge__page, container, false);
+
+
+        final EditText recharge_Price = (EditText)view.findViewById(R.id.recharge_price);
 
 
         stu_recharge_Button = (Button)view.findViewById(R.id.stu_recharge_Button);
@@ -102,7 +101,33 @@ public class Student_Recharge_Page extends Fragment {
                         .setMessage("충전하시겠습니까?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                // 확인시 처리 로직
+
+
+                                Params mparams = new Params();
+                                mparams.add("stu_id", Student_Login_Page.stu_id);
+                                mparams.add("mn_price",recharge_Price.getText().toString());
+
+                                new HttpNetwork("stuRecharge_Info.jsp",mparams.getParams(), new HttpNetwork.AsyncResponse()
+                                {
+                                    @Override
+                                    public void onSuccess (String response){
+
+                                        try {
+                                            //필요없는 부분
+                                            JSONArray useMthArr = new JSONArray(response);
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    @Override
+                                    public void onFailure (String response){
+                                    }
+                                    @Override
+                                    public void onPreExcute () {
+                                    }
+                                });
+
                                 Toast.makeText(getActivity(), "충전하였습니다.", Toast.LENGTH_SHORT).show();
 
                             }})
@@ -135,7 +160,6 @@ public class Student_Recharge_Page extends Fragment {
 
                                 Intent intent = new Intent(getActivity(), YQ_Gift_Barcode.class);
                                 getActivity().startActivity(intent);
-
 
                             }})
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

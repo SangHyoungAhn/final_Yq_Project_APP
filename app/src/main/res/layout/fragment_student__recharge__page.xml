@@ -31,6 +31,7 @@
         >
 
         <EditText
+            android:id="@+id/recharge_price"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -40,6 +41,7 @@
         </EditText>
 
         <TextView
+
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:gravity="center"
