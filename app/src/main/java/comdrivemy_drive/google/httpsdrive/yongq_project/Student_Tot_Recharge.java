@@ -5,9 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,20 +38,23 @@ public class Student_Tot_Recharge extends Fragment {
     private String mParam1;
     private String mParam2;
 
-   // private OnFragmentInteractionListener mListener;
+    Button totBtn;
+    EditText totText;
+    TextView totRecharge;
+
+    ArrayList<String> totRcgList = new ArrayList<String>();
+
+    public static void Init(ArrayList<String> list) {
+
+        list.clear();
+        return;
+    }
+    // private OnFragmentInteractionListener mListener;
 
     public Student_Tot_Recharge() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Student_Tot_Recharge.
-     */
     // TODO: Rename and change types and number of parameters
     public static Student_Tot_Recharge newInstance(String param1, String param2) {
         Student_Tot_Recharge fragment = new Student_Tot_Recharge();
@@ -62,10 +75,75 @@ public class Student_Tot_Recharge extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("충 전");
-        View view= inflater.inflate(R.layout.fragment_student__tot__recharge, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("충전 정산");
+
+        View view = inflater.inflate(R.layout.fragment_student__tot__recharge, container, false);
+
+
+        totBtn = (Button) view.findViewById(R.id.totBtn);
+        totText = (EditText)view.findViewById(R.id.totText);
+        totRecharge = (TextView)view.findViewById(R.id.totRecharge);
+
+
+        totBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Params params = new Params();
+                params.add("stu_id", Student_Login_Page.stu_id);
+                params.add("date", totText.getText().toString());
+
+                new HttpNetwork("stuTotRcg_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
+                    @Override
+                    public void onSuccess(String response) {
+
+
+                        try {
+                            //필요없는 부분
+                            JSONArray totRcgArr = new JSONArray(response);
+                            Init(totRcgList);
+
+                            for (int i = 0; i < totRcgArr.length(); i++) {
+
+                                JSONObject totOb = new JSONObject(totRcgArr.get(i).toString());
+                                ArrayList<String> totList = new ArrayList<String>();
+
+                                totList.add(totOb.getString("sumRcgTot"));
+
+                                totRcgList.add(totList.get(0).toString());
+
+                            }
+
+                          totRecharge.setText(totRcgList.get(0).toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+                    }
+
+                    @Override
+                    public void onPreExcute() {
+                    }
+                });
+
+
+                //totRecharge.setText(totRcgList.get(0).toString());
+
+            }
+        });
+
         return view;
     }
+}
+        // TextView;
+        // EditText;
+
+
 
     /*
 
@@ -111,4 +189,4 @@ public class Student_Tot_Recharge extends Fragment {
     }
 
     */
-}
+

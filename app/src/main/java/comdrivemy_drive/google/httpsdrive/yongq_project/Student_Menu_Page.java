@@ -205,8 +205,9 @@ public class Student_Menu_Page extends Fragment {
             }
         });
 
+
         Params params =new Params();
-        params.add("stu_id","201233008");
+
         new HttpNetwork("menu_Info.jsp",params.getParams(),new HttpNetwork.AsyncResponse(){
             @Override
             public void onSuccess(String response) {

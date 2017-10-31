@@ -1,12 +1,20 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,12 +35,21 @@ public class Show_Recharge_ThMonth extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    TableLayout tableLayout;
+    TableRow tableRow1;
+    TableRow madeRow;
+
     //private OnFragmentInteractionListener mListener;
 
-    public static Show_Recharge_ThMonth newInstance(){
+    public static Show_Recharge_ThMonth newInstance(String param1, String param2){
 
-        return new Show_Recharge_ThMonth();
+        Show_Recharge_ThMonth fragment = new Show_Recharge_ThMonth();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
 
+        return  fragment;
         // Required empty public constructor
     }
 
@@ -48,6 +65,11 @@ public class Show_Recharge_ThMonth extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
     }
 
     @Override
@@ -55,6 +77,118 @@ public class Show_Recharge_ThMonth extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_show__recharge__th_month, container, false);
+
+
+        Bundle bundle = this.getArguments();
+        bundle.getStringArrayList("rcgThMonthList");
+        ArrayList<String> rcgThMthStu = new ArrayList<String>();
+        rcgThMthStu =bundle.getStringArrayList("rcgThMonthList");
+        Log.d("rcgThMth123",rcgThMthStu.toString());
+
+        tableLayout= (TableLayout)view.getRootView().findViewById(R.id.rcgThMthTable);
+
+        tableRow1 = new TableRow(getActivity());
+        tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
+
+        TextView view_thMthDate= new TextView(getActivity());
+        view_thMthDate.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_thMthDate.setTextSize(20);
+        view_thMthDate.setText("일자");
+        view_thMthDate.setTextColor(Color.WHITE);
+        tableRow1.addView(view_thMthDate);
+
+        TextView view_thMthChain = new TextView(getActivity());
+        view_thMthChain.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_thMthChain.setTextSize(20);
+        view_thMthChain.setText("장소");
+        view_thMthChain.setTextColor(Color.WHITE);
+        tableRow1.addView(view_thMthChain);
+
+
+        TextView view_thMthMenu = new TextView(getActivity());
+        view_thMthMenu.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_thMthMenu.setTextSize(20);
+        view_thMthMenu.setText("메뉴명");
+        view_thMthMenu.setTextColor(Color.WHITE);
+        tableRow1.addView(view_thMthMenu);
+
+
+        TextView view_thMthPrice = new TextView(getActivity());
+        view_thMthPrice.setGravity(Gravity.CENTER_HORIZONTAL);
+        view_thMthPrice.setTextSize(20);
+        view_thMthPrice.setText("사용금액");
+        view_thMthPrice.setTextColor(Color.WHITE);
+        tableRow1.addView(view_thMthPrice);
+
+        tableLayout.addView(tableRow1, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        int i;
+        for(i=0; i<rcgThMthStu.size(); i++){
+
+
+            i=6*i;
+            if(i>=rcgThMthStu.size()){
+                break;
+            }
+
+            ArrayList<String>rcgThMthLastList = new ArrayList<String>();
+            rcgThMthLastList.add(rcgThMthStu.get(i).toString());
+            rcgThMthLastList.add(rcgThMthStu.get(i+1).toString());
+            rcgThMthLastList.add(rcgThMthStu.get(i+2).toString());
+            rcgThMthLastList.add(rcgThMthStu.get(i+3).toString());
+            rcgThMthLastList.add(rcgThMthStu.get(i+4).toString());
+            rcgThMthLastList.add(rcgThMthStu.get(i+5).toString());
+
+//0,2,4,3
+            i=i/6;
+            Log.d("usethMth123",rcgThMthLastList.toString());
+
+            for(int j=1; j<2; j++){
+
+                madeRow = new TableRow(getActivity());
+                madeRow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+                TextView thMthDate = new TextView(getActivity());
+                thMthDate.setId(10+j);
+                thMthDate.setText(rcgThMthLastList.get(0).toString());
+                thMthDate.setTextColor(Color.parseColor("#616161"));
+                thMthDate.setGravity(Gravity.CENTER_HORIZONTAL);
+                thMthDate.setTextSize(17);
+                madeRow.addView(thMthDate);
+
+
+                TextView thMthChain = new TextView(getActivity());
+                thMthChain.setId(60+j);
+                thMthChain.setText(rcgThMthLastList.get(2).toString());
+                thMthChain.setTextColor(Color.parseColor("#616161"));
+                thMthChain.setGravity(Gravity.CENTER_HORIZONTAL);
+                thMthChain.setTextSize(17);
+                madeRow.addView(thMthChain);
+
+                TextView  thMthMenu = new TextView(getActivity());
+                thMthMenu.setId(110+j);
+                thMthMenu.setText(rcgThMthLastList.get(4).toString());
+                thMthMenu.setTextColor(Color.parseColor("#616161"));
+                thMthMenu.setGravity(Gravity.CENTER_HORIZONTAL);
+                thMthMenu.setTextSize(17);
+                madeRow.addView(thMthMenu);
+
+                TextView thMthPrice = new TextView(getActivity());
+                thMthPrice.setId(160+j);
+                thMthPrice.setText(rcgThMthLastList.get(3).toString());
+                thMthPrice.setTextColor(Color.parseColor("#616161"));
+                thMthPrice.setGravity(Gravity.CENTER_HORIZONTAL);
+                thMthPrice.setTextSize(17);
+                madeRow.addView(thMthPrice);
+
+
+                tableLayout.addView(madeRow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+            }
+
+        }
+
         return view;
     }
     /*

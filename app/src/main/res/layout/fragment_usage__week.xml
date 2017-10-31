@@ -6,19 +6,17 @@
     android:fillViewport="true"
     android:focusableInTouchMode="true"
     android:focusable="true"
-    android:scrollbars="vertical"
-    >
+    android:scrollbars="vertical">
+
 
     <TableLayout
         android:id="@+id/useWeekTable"
-        android:stretchColumns="*"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:stretchColumns="*">
 
 
     </TableLayout>
-
-
 </ScrollView>
 

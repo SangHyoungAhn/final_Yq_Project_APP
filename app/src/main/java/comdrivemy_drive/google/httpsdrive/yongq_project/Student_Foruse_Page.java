@@ -48,9 +48,7 @@ public class Student_Foruse_Page extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private Button UseWeekBtn;
-    private Button UseMonthBtn;
-    private Button UseThMonthBtn;
+
     Fragment fragment;
 
     private TabLayout tabLayout;
@@ -77,7 +75,6 @@ public class Student_Foruse_Page extends Fragment {
         // Required empty public constructor
         Bundle args = new Bundle();
         Student_Foruse_Page fragment = new Student_Foruse_Page();
-
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -351,7 +348,7 @@ public class Student_Foruse_Page extends Fragment {
 
                     Bundle bundle3 = new Bundle();
                     bundle3.putStringArrayList("useThMonthList", UsageThMonthList);
-                    Log.d("cxcx", UsageThMonthList.toString());
+                    //Log.d("cxcx", UsageThMonthList.toString());
                     thMonth.setArguments(bundle3);
 
                     return thMonth;

@@ -1,124 +1,21 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="*"
-    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Menu_Insung">
+    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Menu_Insung"
+    android:fillViewport="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:scrollbars="vertical">
 
 
-    <!-- 메뉴 표제목 -->
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TableLayout
+        android:id="@+id/rcgWeekTable"
         android:layout_marginTop="40dp"
-        android:background="#616161"
-
-        android:padding="1dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:text="일 자"
-            android:background="#0091EA"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:layout_marginTop="1dp"
-            android:text="충전 금액 "
-            android:background="#0091EA"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:gravity="center_horizontal"
-            />
-
-    </TableRow>
-
-
-    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
+        android:layout_height="fill_parent"
+        android:stretchColumns="*">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="2017-10-06"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="5000"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
 
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="2017-10-08"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="2500"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#616161"
-        android:padding="1dp"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="2017-10-12"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
-            android:text="4000"
-            android:background="#ffffff"
-            android:textSize="17sp"
-            android:gravity="center_horizontal"
-            />
-
-    </TableRow>
-</TableLayout>
+    </TableLayout>
+</ScrollView>
