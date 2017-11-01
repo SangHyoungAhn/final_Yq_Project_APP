@@ -45,7 +45,8 @@
             android:background="#FFFFFFFF">
 
             <EditText
-
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:hint="ADMIN ID"
@@ -60,6 +61,8 @@
                 />
 
             <EditText
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"

@@ -8,6 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,6 +36,19 @@ public class Admin_Insert_Menu_Page extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    EditText InsertMn_id;
+    EditText InsertMn_date;
+    EditText InsertMn_name;
+    EditText InsertMn_price;
+    EditText InsertChain;
+    EditText InsertMn_type;
+
+
+    Button InsertMnBtn;
+
+
 
     //private OnFragmentInteractionListener mListener;
 
@@ -66,6 +88,78 @@ public class Admin_Insert_Menu_Page extends Fragment {
                              Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("메뉴 등록");
         View view=  inflater.inflate(R.layout.fragment_admin__insert__menu__page, container, false);
+
+        InsertMn_id = (EditText)view.findViewById(R.id.InsertMn_id);
+        InsertMn_date = (EditText)view.findViewById(R.id.InsertMn_date);
+        InsertMn_name = (EditText)view.findViewById(R.id.InsertMn_name);
+        InsertMn_price = (EditText)view.findViewById(R.id.InsertMn_price);
+        InsertChain = (EditText)view.findViewById(R.id.InsertChain);
+        InsertMn_type = (EditText)view.findViewById(R.id.InsertMn_type);
+
+        InsertMnBtn = (Button)view.findViewById(R.id.InsertMnBtn);
+
+        InsertMnBtn.setOnClickListener(new View.OnClickListener(){
+
+
+            @Override
+            public void onClick(View v) {
+
+                Params params = new Params();
+                params.add("mn_id",InsertMn_id.getText().toString());
+                params.add("mn_date",InsertMn_date.getText().toString());
+                params.add("mn_name",InsertMn_name.getText().toString());
+                params.add("mn_price",InsertMn_price.getText().toString());
+                params.add("chain",InsertChain.getText().toString());
+                params.add("mn_type",InsertMn_type.getText().toString());
+
+                if(InsertMn_id.getText().toString().length()==0 || InsertMn_date.getText().toString().length()==0
+                        ||InsertMn_name.getText().toString().length()==0 ||InsertMn_price.getText().toString().length()==0
+                        ||InsertChain.getText().toString().length()==0 || InsertMn_type.getText().toString().length()==0 )
+                {
+                    Toast.makeText(getActivity(), "올바르게 입력해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(), "메뉴가 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                    InsertMn_id.getText().clear();
+                    InsertMn_date.getText().clear();
+                    InsertMn_name.getText().clear();
+                    InsertMn_price.getText().clear();
+                    InsertChain.getText().clear();
+                    InsertMn_type.getText().clear();
+
+
+
+
+                }
+
+
+
+
+
+                new HttpNetwork("insertMenu_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
+                    @Override
+                    public void onSuccess(String response) {
+
+
+                        try {
+                            //필요없는 부분
+                            JSONArray totUseArr = new JSONArray(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+                    }
+
+                    public void onPreExcute() {
+                    }
+
+
+                });
+            }
+        });
+
         return view;
     }
 

@@ -8,6 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,10 +37,22 @@ public class Student_Tot_Usage extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+
+    Button totUseBtn;
+    EditText totUseText;
+    TextView totUse;
+    ArrayList<String>totUseList = new ArrayList<String>();
     //private OnFragmentInteractionListener mListener;
 
     public Student_Tot_Usage() {
         // Required empty public constructor
+    }
+
+    public static void Init(ArrayList<String> list){
+        list.clear();
+
+        return ;
     }
 
     /**
@@ -67,9 +88,67 @@ public class Student_Tot_Usage extends Fragment {
 
 
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("사 용");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("사용 정산");
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_student__tot__usage, container, false);
+
+
+        totUseBtn=(Button)view.findViewById(R.id.totUseBtn);
+        totUseText = (EditText)view.findViewById(R.id.totUseText);
+        totUse = (TextView)view.findViewById(R.id.totUse);
+
+
+        totUseBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Params params = new Params();
+                params.add("stu_id",Student_Login_Page.stu_id);
+                params.add("date",totUseText.getText().toString());
+
+
+                new HttpNetwork("stuTotUse_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
+                    @Override
+                    public void onSuccess(String response) {
+
+
+                        try {
+                            //필요없는 부분
+                            JSONArray totUseArr = new JSONArray(response);
+                            Init(totUseList);
+
+                            for (int i = 0; i < totUseArr.length(); i++) {
+
+                                JSONObject totOb = new JSONObject(totUseArr.get(i).toString());
+                                ArrayList<String> totList = new ArrayList<String>();
+
+                                totList.add(totOb.getString("sumTot"));
+
+                                totUseList.add(totList.get(0).toString());
+
+                            }
+
+                            totUse.setText(totUseList.get(0).toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+                    }
+
+                    public void onPreExcute() {
+                    }
+
+
+                });
+
+            }
+        });
+
         return view;
     }
 

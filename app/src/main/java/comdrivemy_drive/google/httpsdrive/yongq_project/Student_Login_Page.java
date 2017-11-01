@@ -78,8 +78,8 @@ public class Student_Login_Page extends Activity {
             }
         });
 
-        final Button LoginButton = (Button) findViewById(R.id.loginButton);
-        final Button AdminButton = (Button) findViewById(R.id.adminButton);
+         Button LoginButton = (Button) findViewById(R.id.loginButton);
+         Button AdminButton = (Button) findViewById(R.id.adminButton);
 
 
 
@@ -144,12 +144,20 @@ public class Student_Login_Page extends Activity {
                                             intent.putExtra("stu_id", idText.getText().toString());
                                             intent.putExtra("stu_name", stu_name);
                                             intent.putExtra("stu_change", userList.get(3).toString());
+
+                                            idText.getText().clear();
+                                            PasswordText.getText().clear();
+
                                             Student_Login_Page.this.startActivity(intent);
 
 
                                         } else if (idText.getText().toString().length() == 0
                                                 || PasswordText.getText().toString().length() == 0) {
                                             Toast.makeText(Student_Login_Page.this, "학번 or 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+
+                                            idText.getText().clear();
+                                            PasswordText.getText().clear();
 
 
                                         }

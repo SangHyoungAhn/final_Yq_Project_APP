@@ -50,7 +50,7 @@ public class HttpNetwork extends AsyncTask<String, Void, String> {
 
         this.delegate = delegate;
         this.params = params;
-        this.execute("http://192.168.25.56:8080/final_Yq_Project/outputServer/" + URL);
+        this.execute("http://192.168.25.7:8080/final_Yq_Project/outputServer/" + URL);
 
         //192.168.25.38
         //192.168.1.12

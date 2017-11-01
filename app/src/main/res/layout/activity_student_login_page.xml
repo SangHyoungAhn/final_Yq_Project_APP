@@ -44,6 +44,8 @@
 
             <EditText
 
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:id="@+id/idText"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -57,6 +59,8 @@
                 android:textColorHint="#616161" />
 
             <EditText
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:id="@+id/passwordText"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
