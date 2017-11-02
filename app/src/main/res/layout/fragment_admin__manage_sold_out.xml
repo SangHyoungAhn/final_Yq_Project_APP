@@ -76,6 +76,7 @@
                     android:textSize="20dp" />
 
                 <EditText
+
                     android:id="@+id/soldchain"
                     android:singleLine="true"
                     android:imeOptions="actionNext"

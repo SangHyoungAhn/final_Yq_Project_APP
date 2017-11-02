@@ -135,10 +135,11 @@ public class Admin_Password_Page extends Fragment {
                             findPw.setText(findPwlist.get(0).toString());
                             findName.setText(findPwlist.get(1).toString());
 
-
+                            inputId.getText().clear();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
 
                     @Override

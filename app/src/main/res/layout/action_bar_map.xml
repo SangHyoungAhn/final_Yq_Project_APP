@@ -22,10 +22,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/app_logo"
-
-
-        />
+        android:src="@drawable/app_logo" />
 
     <ImageButton
         android:id="@+id/school_map"

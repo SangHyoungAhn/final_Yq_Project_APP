@@ -13,11 +13,6 @@ public class YQ_CheckPayment_Page extends AppCompatActivity {
     Button payment_btn;
     TextView send_Data;
 
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,24 +36,20 @@ public class YQ_CheckPayment_Page extends AppCompatActivity {
         mn_price=(TextView)findViewById(R.id.mn_price);
         String all_Menu= J;
 
+
         String show_date = all_Menu.split(";")[0];
         String show_m_name = all_Menu.split(";")[1];
         String show_m_type = all_Menu.split(";")[2];
         String show_chain = all_Menu.split(";")[3];
         String show_price = all_Menu.split(";")[4];
 
+
+
         mn_date.setText(show_date);
         mn_name.setText(show_m_name);
         mn_type.setText(show_m_type);
         mn_chain.setText(show_chain);
         mn_price.setText(show_price);
-
-
-
-      //  int idx = all_Menu.indexOf("=");
-      //  String Menu= J.substring(idx+1);
-
-       // check_Data.setText(Menu);
 
 
 

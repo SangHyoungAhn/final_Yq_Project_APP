@@ -1,36 +1,38 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 public class YQ_Final_Main_Menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
-
-
+    //Press Cancle Button Do not change
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                Intent intent = new Intent(this, YQ_Final_Main_Menu.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,43 +54,41 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
         getSupportActionBar().setTitle("학생 메뉴");
 
 
-
-       // Log.d("1234d",Student_Login_Page.stu_name);
+        // Log.d("1234d",Student_Login_Page.stu_name);
 
         //정보 이동
-        Button InfoButton = (Button)findViewById(R.id.Stu_Info);
-        InfoButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        Button InfoButton = (Button) findViewById(R.id.Stu_Info);
+
+
+        InfoButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
                 FragmentManager fM = getSupportFragmentManager();
                 FragmentTransaction fT = fM.beginTransaction();
-                getIntent().putExtra("stu_name",Student_Login_Page.stu_name);
-                getIntent().putExtra("stu_id",Student_Login_Page.stu_id);
-                getIntent().putExtra("stu_change",Student_Login_Page.stu_change);
-               // getIntent().putExtra("stu_change",getIntent().getExtras().getString("stu_change"));
+                getIntent().putExtra("stu_name", Student_Login_Page.stu_name);
+                getIntent().putExtra("stu_id", Student_Login_Page.stu_id);
+                getIntent().putExtra("stu_change", Student_Login_Page.stu_change);
+                // getIntent().putExtra("stu_change",getIntent().getExtras().getString("stu_change"));
                 fT.replace(R.id.contents, new Student_Info_Page());
                 fT.commit();
 
 
+
             }
         });
 
 
-
-        Button scannerButton = (Button)findViewById(R.id.qr_Scanner);
+        Button scannerButton = (Button) findViewById(R.id.qr_Scanner);
         scannerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(YQ_Final_Main_Menu.this , YQ_Barcode.class);
+                Intent intent = new Intent(YQ_Final_Main_Menu.this, YQ_Barcode.class);
                 YQ_Final_Main_Menu.this.startActivity(intent);
-
 
 
             }
         });
-
-
 
 
         //메뉴 이동
@@ -109,10 +109,10 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
 
 
         //주간 메뉴이동
-        Button WeekMenuButton = (Button)findViewById(R.id.WeekMenu);
-        WeekMenuButton.setOnClickListener(new View.OnClickListener(){
+        Button WeekMenuButton = (Button) findViewById(R.id.WeekMenu);
+        WeekMenuButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
+            public void onClick(View v) {
 
                 FragmentManager fM = getSupportFragmentManager();
                 FragmentTransaction fT = fM.beginTransaction();
@@ -139,10 +139,10 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
 
         */
 
-        Button RechargeButton = (Button)findViewById(R.id.Recharge);
+        Button RechargeButton = (Button) findViewById(R.id.Recharge);
         RechargeButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
+            public void onClick(View v) {
 
                 FragmentManager fM = getSupportFragmentManager();
                 FragmentTransaction fT = fM.beginTransaction();
@@ -154,13 +154,10 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
         });
 
 
+        Button UsageButton = (Button) findViewById(R.id.Usage);
+        UsageButton.setOnClickListener(new View.OnClickListener() {
 
-
-
-        Button UsageButton = (Button)findViewById(R.id.Usage);
-        UsageButton.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v){
+            public void onClick(View v) {
 
                 FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
                 fT.replace(R.id.contents, new Student_Foruse_Page());
@@ -169,7 +166,6 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
 
 
         });
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -183,20 +179,23 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
 
         View nav_header_view = navigationView.getHeaderView(0);
 
-        TextView menu_stu_name=(TextView)nav_header_view.findViewById(R.id.menu_bar_stu_name);
+        TextView menu_stu_name = (TextView) nav_header_view.findViewById(R.id.menu_bar_stu_name);
         menu_stu_name.setText(Student_Login_Page.stu_name);
 
 
-        TextView menu_stu_id=(TextView)nav_header_view.findViewById(R.id.menu_bar_stu_id);
+        TextView menu_stu_id = (TextView) nav_header_view.findViewById(R.id.menu_bar_stu_id);
         menu_stu_id.setText(Student_Login_Page.stu_id);
 
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+
+
             super.onBackPressed();
         }
     }
@@ -229,13 +228,12 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home){
-           // Intent homeIntent =  new Intent(YQ_Final_Main_Menu.this, YQ_Final_Main_Menu.class);
+        if (id == R.id.nav_home) {
+            // Intent homeIntent =  new Intent(YQ_Final_Main_Menu.this, YQ_Final_Main_Menu.class);
             //YQ_Final_Main_Menu.this.startActivity(homeIntent);
             Intent intent = new Intent(this, YQ_Final_Main_Menu.class);
             this.startActivity(intent);
-        }
-          else if(id == R.id.nav_facility) {
+        } else if (id == R.id.nav_facility) {
 
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/d/embed?mid=1ImfGBHOdJQXm7FcBI6UhtBTpPqs"));
             YQ_Final_Main_Menu.this.startActivity(intent);
@@ -260,27 +258,27 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        } else if (id == R.id.show_recharge){
+        } else if (id == R.id.show_recharge) {
 
             FragmentManager fM = getSupportFragmentManager();
             FragmentTransaction fT = fM.beginTransaction();
             fT.replace(R.id.contents, new Student_Tot_Recharge());
             fT.commit();
-        } else if (id== R.id.show_usage){
+        } else if (id == R.id.show_usage) {
 
             FragmentManager fM = getSupportFragmentManager();
             FragmentTransaction fT = fM.beginTransaction();
             fT.replace(R.id.contents, new Student_Tot_Usage());
             fT.commit();
 
-        } else if (id== R.id.intro_app){
+        } else if (id == R.id.intro_app) {
 
             FragmentManager fM = getSupportFragmentManager();
             FragmentTransaction fT = fM.beginTransaction();
             fT.replace(R.id.contents, new YQ_Intro_APP());
             fT.commit();
 
-        } else if( id==R.id.create_by){
+        } else if (id == R.id.create_by) {
 
             FragmentManager fM = getSupportFragmentManager();
             FragmentTransaction fT = fM.beginTransaction();

@@ -1,8 +1,8 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,6 +23,16 @@ public class Admin_Login_Page extends AppCompatActivity {
     public static String ad_name;
 
 
+    //Press Cancle Button Do not change
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +47,13 @@ public class Admin_Login_Page extends AppCompatActivity {
         Button AdminButton = (Button) findViewById(R.id.studentButton);
 
 
-        adminIdText.setOnKeyListener(new View.OnKeyListener(){
+        adminIdText.setOnKeyListener(new View.OnKeyListener() {
 
 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-                if((event.getAction() ==KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
                     return true;
                 }
@@ -52,14 +62,13 @@ public class Admin_Login_Page extends AppCompatActivity {
         });
 
 
-
-        adminPasswordText.setOnKeyListener(new View.OnKeyListener(){
+        adminPasswordText.setOnKeyListener(new View.OnKeyListener() {
 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
 
-                if((event.getAction()==KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
                     return true;
                 }
@@ -67,8 +76,7 @@ public class Admin_Login_Page extends AppCompatActivity {
             }
         });
 
-
-        AdminButton.setOnClickListener(new View.OnClickListener(){
+        AdminButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -78,14 +86,14 @@ public class Admin_Login_Page extends AppCompatActivity {
             }
         });
 
-        LoginButton.setOnClickListener(new View.OnClickListener(){
+        LoginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
 
                 Params params = new Params();
-                params.add("ad_id",adminIdText.getText().toString());
+                params.add("ad_id", adminIdText.getText().toString());
 
                 new HttpNetwork("adlogin_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse()
 
@@ -125,8 +133,6 @@ public class Admin_Login_Page extends AppCompatActivity {
                                     adminPasswordText.getText().clear();
 
 
-                                    Log.d("kkk",ad_name);
-                                    Log.d("kkk",ad_id);
                                     Admin_Login_Page.this.startActivity(adminLoginIntent);
 
 

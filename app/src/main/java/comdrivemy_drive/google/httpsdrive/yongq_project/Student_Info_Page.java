@@ -1,11 +1,8 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +18,6 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class Student_Info_Page extends Fragment {
-
 
 
     TextView info_Stu_id;
@@ -44,14 +40,7 @@ public class Student_Info_Page extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Student_Info_Page.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static Student_Info_Page newInstance(String param1, String param2) {
         Student_Info_Page fragment = new Student_Info_Page();
@@ -66,35 +55,52 @@ public class Student_Info_Page extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
+    public void onBackPressed() {
+
+
+    }
+
+
+    /*
+     FragmentManager fM = getActivity().getSupportFragmentManager();
+            fM.beginTransaction();
+            fM.addOnBackStackChangedListener(on);
+            fM.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("학생 정보");
-        View view= inflater.inflate(R.layout.fragment_student__info__page, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("학생 정보");
+        View view = inflater.inflate(R.layout.fragment_student__info__page, container, false);
 
 
-
-        info_Stu_id=(TextView)view.findViewById(R.id.info_stu_id);
+        info_Stu_id = (TextView) view.findViewById(R.id.info_stu_id);
         info_Stu_id.setText(getActivity().getIntent().getExtras().getString("stu_id"));
 
 
         // Log.d("1234ddd",Student_Login_Page.stu_name);
 
-        info_Stu_name=(TextView)view.findViewById(R.id.info_stu_name);
+        info_Stu_name = (TextView) view.findViewById(R.id.info_stu_name);
         info_Stu_name.setText(getActivity().getIntent().getExtras().getString("stu_name"));
 
 
-        info_Stu_change=(TextView)view.findViewById(R.id.info_stu_change);
+        info_Stu_change = (TextView) view.findViewById(R.id.info_stu_change);
         info_Stu_change.setText(getActivity().getIntent().getExtras().getString("stu_change"));
 
 
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null).commit();
 
 
         return view;
     }
+
+
+
   /*
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

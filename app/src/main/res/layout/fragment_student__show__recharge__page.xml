@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="사용 내역"
+        android:text="충전 내역"
         android:textSize="15dp"
         android:textColor="#000000"
         android:textStyle="bold"

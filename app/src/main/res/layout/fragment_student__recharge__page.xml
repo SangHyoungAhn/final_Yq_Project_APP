@@ -31,6 +31,8 @@
         >
 
         <EditText
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:id="@+id/recharge_price"
             android:layout_width="300dp"
             android:layout_height="50dp"

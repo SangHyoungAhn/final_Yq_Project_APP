@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,9 +18,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class YQ_Final_Admin_Menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    //Press Cancle Button Do not change
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                Intent intent = new Intent(this, YQ_Final_Admin_Menu.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +121,7 @@ public class YQ_Final_Admin_Menu extends AppCompatActivity
             public void onClick(View v) {
 
                 FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
-                fT.replace(R.id.admin_contents, Admin_Usage_Page.newInstance());
+                fT.replace(R.id.admin_contents, new Admin_Usage_Page());
                 fT.commit();
             }
         });
@@ -123,6 +139,13 @@ public class YQ_Final_Admin_Menu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View nav_header_view = navigationView.getHeaderView(0);
+        TextView ad_id = (TextView)nav_header_view.findViewById(R.id.ad_menu_bar_id);
+        TextView ad_name = (TextView)nav_header_view.findViewById(R.id.ad_menu_bar_name);
+
+        ad_id.setText(Admin_Login_Page.ad_id);
+        ad_name.setText(Admin_Login_Page.ad_name);
     }
 
     @Override
