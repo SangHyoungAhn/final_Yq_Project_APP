@@ -50,6 +50,9 @@
                     android:textSize="20dp" />
 
                 <EditText
+                    android:id="@+id/soldmn"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="15dp" />
@@ -73,6 +76,9 @@
                     android:textSize="20dp" />
 
                 <EditText
+                    android:id="@+id/soldchain"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp" />
@@ -87,7 +93,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView11"
+
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="50dp"
@@ -97,6 +103,9 @@
                     android:textSize="20dp" />
 
                 <EditText
+                    android:id="@+id/soldout"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp" />
@@ -114,6 +123,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/soldBtn"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

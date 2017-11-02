@@ -109,7 +109,6 @@ public class YQ_Gift_Barcode extends AppCompatActivity {
                                         // 확인시 처리 로직
 
 
-
                                         Params params = new Params();
                                         params.add("send_id", Student_Login_Page.stu_id);
                                         params.add("mn_price",stu_price.getText().toString());
@@ -149,7 +148,8 @@ public class YQ_Gift_Barcode extends AppCompatActivity {
                                         intent.putExtra("menu_Info",K);
                                         intent.putExtra("send_money",show_stu_price);
                                         YQ_Gift_Barcode.this.startActivity(intent);
-                                    }})
+                                    }
+                                })
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         // 취소시 처리 로직

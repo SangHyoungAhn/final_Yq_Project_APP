@@ -200,14 +200,13 @@ public class Student_Menu_Page extends Fragment {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
-
-
             }
+
+
         });
 
 
         Params params =new Params();
-
         new HttpNetwork("menu_Info.jsp",params.getParams(),new HttpNetwork.AsyncResponse(){
             @Override
             public void onSuccess(String response) {

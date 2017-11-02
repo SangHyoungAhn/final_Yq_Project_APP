@@ -8,6 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,6 +36,13 @@ public class Admin_Manage_soldOut extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    EditText soldmn;
+    EditText soldchain;
+    EditText soldout;
+
+    Button soldBtn;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -59,6 +75,68 @@ public class Admin_Manage_soldOut extends Fragment {
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("매진 관리");
         View view= inflater.inflate(R.layout.fragment_admin__manage_sold_out, container, false);
+
+
+        soldmn= (EditText)view.findViewById(R.id.soldmn);
+        soldchain = (EditText)view.findViewById(R.id.soldchain);
+        soldout = (EditText)view.findViewById(R.id.soldout);
+        soldBtn = (Button)view.findViewById(R.id.soldBtn);
+
+
+        soldBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Params params = new Params();
+                params.add("mn_name",soldmn.getText().toString());
+                params.add("chain",soldchain.getText().toString());
+                params.add("mn_sold",soldout.getText().toString());
+
+                if(soldmn.getText().toString().length()==0 || soldchain.getText().toString().length()==0
+                        ||soldout.getText().toString().length()==0)
+                {
+                    Toast.makeText(getActivity(), " 정보를 올바르게 입력해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(), " 매진이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    soldmn.getText().clear();
+                    soldchain.getText().clear();
+                    soldout.getText().clear();
+
+                }
+
+                new HttpNetwork("adSold_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
+                    @Override
+                    public void onSuccess(String response) {
+
+                        JSONObject json = null;
+
+
+                        try {
+                            //필요없는 부분
+                            JSONArray findPwArr = new JSONArray(response);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+                    }
+
+                    public void onPreExcute() {
+                    }
+
+
+                });
+
+            }
+        });
+
+
         return view;
 
     }

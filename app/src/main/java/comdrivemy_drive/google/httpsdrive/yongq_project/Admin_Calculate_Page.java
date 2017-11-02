@@ -1,13 +1,27 @@
 package comdrivemy_drive.google.httpsdrive.yongq_project;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,7 +42,25 @@ public class Admin_Calculate_Page extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    EditText totDateText;
+    EditText totChainText;
+    TextView adminTotText;
+    TextView adminTotMenuText;
+    Button adminTotSearch;
+    TableLayout tableLayout;
+    TableRow tableRow1;
+    TableRow madeRow;
+
+    ArrayList<String>adTotLastList = new ArrayList<String>();
+    ArrayList<String>adTotAwardLastList = new ArrayList<String>();
     //private OnFragmentInteractionListener mListener;
+
+    public void Init(ArrayList<String> lit){
+
+        lit.clear();
+        return;
+    }
+
 
     public Admin_Calculate_Page() {
         // Required empty public constructor
@@ -67,10 +99,186 @@ public class Admin_Calculate_Page extends Fragment {
         // Inflate the layout for this fragment
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("정 산");
+         final View  view =inflater.inflate(R.layout.fragment_admin__calculate__page, container, false);
 
-        View  view =inflater.inflate(R.layout.fragment_admin__calculate__page, container, false);
+         totDateText = (EditText)view.findViewById(R.id.totDateText);
+         totChainText= (EditText)view.findViewById(R.id.totChainText);
+         adminTotText= (TextView)view.findViewById(R.id.adminTotText);
+
+         adminTotSearch=(Button)view.findViewById(R.id.adminTotSearch);
+
+
+        adminTotSearch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+
+                Params params = new Params();
+
+                params.add("date", totDateText.getText().toString());
+                params.add("chain", totChainText.getText().toString());
+
+
+                new HttpNetwork("adTotuse.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
+                    @Override
+                    public void onSuccess(String response) {
+
+
+                        try {
+
+
+                            JSONArray totUseArr = new JSONArray(response);
+                            Init(adTotLastList);
+
+                            for (int i = 0; i < totUseArr.length(); i++) {
+
+                                JSONObject totOb = new JSONObject(totUseArr.get(i).toString());
+                                ArrayList<String> adTotList = new ArrayList<String>();
+
+                                adTotList.add(totOb.getString("adTot"));
+                                adTotLastList.add(adTotList.get(0).toString());
+                                Log.d("mvmcv", adTotLastList.toString());
+                            }
+                            Log.d("mv223v", adTotLastList.toString());
+
+                            adminTotText.setText(adTotLastList.get(0).toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+                    }
+
+                    public void onPreExcute() {
+                    }
+
+
+                });
+
+
+                Params params2 = new Params();
+
+                params2.add("date", totDateText.getText().toString());
+                params2.add("chain", totChainText.getText().toString());
+
+
+                new HttpNetwork("adTotuseAward.jsp", params2.getParams(), new HttpNetwork.AsyncResponse() {
+                    @Override
+                    public void onSuccess(String response) {
+
+                        try {
+
+                            JSONArray totUseArr = new JSONArray(response);
+                            Init(adTotAwardLastList);
+                            for (int i = 0; i < totUseArr.length(); i++) {
+
+                                JSONObject totOb = new JSONObject(totUseArr.get(i).toString());
+
+                                ArrayList<String> adTotawardList = new ArrayList<String>();
+                                adTotawardList.add(totOb.getString("getAward"));
+                                adTotawardList.add(totOb.getString("mn_name"));
+
+                                adTotAwardLastList.add(adTotawardList.get(0).toString());
+                                adTotAwardLastList.add(adTotawardList.get(1).toString());
+
+
+                            }
+                                Log.d("kvnxxcv",adTotAwardLastList.toString());
+                            tableLayout = (TableLayout)view.getRootView().findViewById(R.id.awardTable);
+
+                            //when create table automatically , tableRow1 is fixed row.
+                            tableRow1 = new TableRow(getActivity());
+                            tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                            tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
+
+
+                            TextView view_menu_sort = new TextView(getActivity());
+                            view_menu_sort.setGravity(Gravity.CENTER_HORIZONTAL);
+                            view_menu_sort.setTextSize(20);
+                            view_menu_sort.setText("메뉴명");
+                            view_menu_sort.setTextColor(Color.WHITE);
+
+                            tableRow1.addView(view_menu_sort);
+
+
+                            TextView view_menu_name = new TextView(getActivity());
+                            view_menu_name.setGravity(Gravity.CENTER_HORIZONTAL);
+                            view_menu_name.setTextSize(20);
+                            view_menu_name.setText("구매횟수");
+                            view_menu_name.setTextColor(Color.WHITE);
+                            tableRow1.addView(view_menu_name);
+
+                            int i;
+                            for (i = 0; i < adTotAwardLastList.size(); i=i+2) {
+
+
+                                if (i >= adTotAwardLastList.size()) {
+                                    break;
+                                }
+                                ArrayList<String> adLastList = new ArrayList<String>();
+                                adLastList.add(adTotAwardLastList.get(i).toString());
+                                adLastList.add(adTotAwardLastList.get(i + 1).toString());
+
+
+                                Log.d("correctInsungList", adLastList.toString());
+                                for (int j = 1; j < 2; j++) {
+
+                                    madeRow = new TableRow(getActivity());
+                                    madeRow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+                                    TextView insungTypeText = new TextView(getActivity());
+                                    insungTypeText.setId(10 + j);
+                                    insungTypeText.setText(adLastList.get(1).toString());
+                                    insungTypeText.setTextColor(Color.parseColor("#616161"));
+                                    insungTypeText.setGravity(Gravity.CENTER_HORIZONTAL);
+                                    insungTypeText.setTextSize(17);
+                                    madeRow.addView(insungTypeText);
+
+
+                                    TextView insungMenuText = new TextView(getActivity());
+                                    insungMenuText.setId(50 + j);
+                                    insungMenuText.setText(adLastList.get(0).toString());
+                                    insungMenuText.setTextColor(Color.parseColor("#616161"));
+                                    insungMenuText.setGravity(Gravity.CENTER_HORIZONTAL);
+                                    insungMenuText.setTextSize(17);
+                                    madeRow.addView(insungMenuText);
+
+
+                                    tableLayout.addView(madeRow, new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+                                }
+
+                            }
+
+                            totDateText.getText().clear();
+                            totChainText.getText().clear();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+                    }
+
+                    public void onPreExcute() {
+                    }
+
+
+                });
+
+            }
+        });
+
         return view;
     }
+
+
     /*
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

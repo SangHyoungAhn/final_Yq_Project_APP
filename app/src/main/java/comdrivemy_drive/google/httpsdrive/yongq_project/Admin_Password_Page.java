@@ -8,6 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +37,18 @@ public class Admin_Password_Page extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    EditText inputId;
+    Button pwBtn;
+    TextView findName;
+    TextView findPw;
+    ArrayList<String> findPwlist = new ArrayList<>();
+
+
+
+    public void Init(ArrayList<String>list){
+        list.clear();
+        return;
+    }
     // private OnFragmentInteractionListener mListener;
 
     public Admin_Password_Page() {
@@ -64,9 +85,74 @@ public class Admin_Password_Page extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("비밀번호 찾기");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("비밀번호 찾기");
 
-        View view =  inflater.inflate(R.layout.fragment_admin__password__page, container, false);
+        View view = inflater.inflate(R.layout.fragment_admin__password__page, container, false);
+        inputId = (EditText) view.findViewById(R.id.inputId);
+        pwBtn = (Button) view.findViewById(R.id.pwBtn);
+        findName = (TextView) view.findViewById(R.id.findNm);
+        findPw = (TextView) view.findViewById(R.id.findPw);
+
+
+        pwBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Params params = new Params();
+                params.add("stu_id", inputId.getText().toString());
+
+
+
+
+
+                new HttpNetwork("adpw_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
+                    @Override
+                    public void onSuccess(String response) {
+
+                        JSONObject json = null;
+
+
+                        try {
+                            //필요없는 부분
+                            JSONArray findPwArr = new JSONArray(response);
+                            Init(findPwlist);
+
+                            for (int i = 0; i < findPwArr.length(); i++) {
+
+                                JSONObject findPwOb = new JSONObject(findPwArr.get(i).toString());
+                                ArrayList<String> pwList = new ArrayList<String>();
+
+
+                                pwList.add(findPwOb.getString("stu_pw"));
+                                pwList.add(findPwOb.getString("stu_name"));
+
+
+                                findPwlist.add(pwList.get(0).toString());
+                                findPwlist.add(pwList.get(1).toString());
+
+                            }
+                            findPw.setText(findPwlist.get(0).toString());
+                            findName.setText(findPwlist.get(1).toString());
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String response) {
+                    }
+
+                    public void onPreExcute() {
+                    }
+
+
+                });
+            }
+        });
+
         return view;
     }
 
