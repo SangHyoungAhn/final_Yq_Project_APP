@@ -105,7 +105,7 @@ public class YQ_Final_Admin_Menu extends AppCompatActivity
             public void onClick(View v) {
 
                 FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
-                fT.replace(R.id.admin_contents, Admin_Usage_Page.newInstance());
+                fT.replace(R.id.admin_contents, new Admin_Usage_Page());
                 fT.commit();
             }
         });
