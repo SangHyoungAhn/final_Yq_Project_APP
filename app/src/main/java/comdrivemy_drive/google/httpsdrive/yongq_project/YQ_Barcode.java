@@ -56,7 +56,6 @@ public class YQ_Barcode extends AppCompatActivity {
         integrator.initiateScan();
 
 
-
         cancel_Data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,8 +79,6 @@ public class YQ_Barcode extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -96,20 +93,22 @@ public class YQ_Barcode extends AppCompatActivity {
 
                 final String K = result.getContents();
 
-                m_date = (TextView) findViewById(R.id.m_date);
+
                 m_name = (TextView) findViewById(R.id.m_name);
                 m_type = (TextView) findViewById(R.id.m_type);
                 m_chain = (TextView) findViewById(R.id.m_chain);
                 m_price = (TextView) findViewById(R.id.m_price);
+
+
                 String all_Menu = K;
 
-                String show_date = all_Menu.split(";")[0];
-                String show_m_name = all_Menu.split(";")[1];
-                String show_m_type = all_Menu.split(";")[2];
-                String show_chain = all_Menu.split(";")[3];
-                String show_price = all_Menu.split(";")[4];
 
-                m_date.setText(show_date);
+                String show_m_name = all_Menu.split(";")[0];
+                String show_m_type = all_Menu.split(";")[1];
+                String show_chain = all_Menu.split(";")[2];
+                String show_price = all_Menu.split(";")[3];
+
+
                 m_name.setText(show_m_name);
                 m_type.setText(show_m_type);
                 m_chain.setText(show_chain);

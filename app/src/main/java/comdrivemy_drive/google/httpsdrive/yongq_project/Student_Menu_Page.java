@@ -315,15 +315,23 @@ public class Student_Menu_Page extends Fragment {
         //탭의 수
         int num_tab;
 
-
         public PagerAdapter(FragmentManager fm, int numOfTabs) {
             super(fm);
             this.num_tab = numOfTabs;
         }
 
+        /*
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+        */
+
         @Override
         public Fragment getItem(int position) {
+
             switch (position) {
+
                 case 0:
 
                     Menu_Insung Insung= new Menu_Insung();
@@ -346,8 +354,6 @@ public class Student_Menu_Page extends Fragment {
 
                 case 2:
 
-
-
                     Menu_Dorm Dorm = new Menu_Dorm();
                     Bundle bundle3 = new Bundle();
                     bundle3.putStringArrayList("DormMenu",DormMenu);
@@ -365,6 +371,7 @@ public class Student_Menu_Page extends Fragment {
 
         @Override
         public int getCount() {
+
             return num_tab;
         }
     }

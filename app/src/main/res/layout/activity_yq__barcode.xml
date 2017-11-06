@@ -32,26 +32,6 @@
         android:layout_gravity="center"/>
     -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-
-        <TextView
-
-            android:layout_width="90dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="20dp"
-            android:text="날 짜: " />
-
-        <TextView
-            android:id="@+id/m_date"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-    </LinearLayout>
 
 
     <LinearLayout
@@ -135,6 +115,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <Button
