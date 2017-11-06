@@ -51,13 +51,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
+
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="40dp"
                 android:text="매출: "
                 android:textSize="20dp" />
 
@@ -66,7 +67,7 @@
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="40dp"
                 android:textSize="20dp" />
 
 

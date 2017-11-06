@@ -49,12 +49,21 @@ public class Admin_Usage_Page extends Fragment {
     TableRow madeRow;
     ArrayList<String> findUseLastList = new ArrayList<String>();
 
-
     public void Init(ArrayList<String> list) {
         list.clear();
         return;
     }
 
+
+    private void cleanTable(TableLayout table) {
+
+        int childCount = table.getChildCount();
+
+        // Remove all rows except the first one
+        if (childCount > 1) {
+            table.removeViews(2, childCount - 1);
+        }
+    }
 
     // private OnFragmentInteractionListener mListener;
 
@@ -72,9 +81,9 @@ public class Admin_Usage_Page extends Fragment {
 
 
     /*
-    FragmentTransaction tr = getFragmentManager().beginTransaction();
-tr.replace(R.id.your_fragment_container, yourFragmentInstance);
-tr.commit(
+        FragmentTransaction tr = getFragmentManager().beginTransaction();
+        tr.replace(R.id.your_fragment_container, yourFragmentInstance);
+        tr.commit(
 
      */
 
@@ -90,60 +99,64 @@ tr.commit(
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("사용 내역");
         final View view = inflater.inflate(R.layout.fragment_admin__usage__page, container, false);
 
+        tableLayout = (TableLayout) view.findViewById(R.id.awardTable);
+
+        final TableRow remove_row = (TableRow)view.findViewById(R.id.usageRow);
         adfindUseBtn = (Button) view.findViewById(R.id.adfindUseBtn);
         adfindid = (EditText) view.findViewById(R.id.adfindid);
-
-
-        /*
-
-
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(Admin_Usage_Page.this).attach(Admin_Usage_Page.this).commit();
-
-         */
-
-
-        //  if(madeRow !=null){
-        //        tableLayout.removeAllViewsInLayout();
-        //      }
-
-//        if(madeRow !=null)
 
 
         adfindUseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                tableLayout.removeView(remove_row);
 
                 Params params = new Params();
                 params.add("stu_id", adfindid.getText().toString());
 
 
-                /*
                 if (madeRow != null) {
-
-                    AlertDialog.Builder  aB= new AlertDialog.Builder(getActivity());
-                    aB.setTitle("알림");
-                    aB.setMessage("테이블을 초기화하시겠습니까?");
-                    aB.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-                            ft.detach(Admin_Usage_Page.this).attach(Admin_Usage_Page.this).commit();
-                        }
-
-                    });
-                    aB.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            return;
-                        }
-                    })
-                    .show();
-
+                    tableLayout.removeAllViews();
                 }
-                */
+
+                tableRow1 = new TableRow(getActivity());
+                tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
+
+
+                TextView view_menu_sort = new TextView(getActivity());
+                view_menu_sort.setGravity(Gravity.CENTER_HORIZONTAL);
+                view_menu_sort.setTextSize(20);
+                view_menu_sort.setText("일자");
+                view_menu_sort.setTextColor(Color.WHITE);
+
+                tableRow1.addView(view_menu_sort);
+
+
+                TextView view_menu_place = new TextView(getActivity());
+                view_menu_place.setGravity(Gravity.CENTER_HORIZONTAL);
+                view_menu_place.setTextSize(20);
+                view_menu_place.setText("장소");
+                view_menu_place.setTextColor(Color.WHITE);
+                tableRow1.addView(view_menu_place);
+
+                TextView view_menu_name = new TextView(getActivity());
+                view_menu_name.setGravity(Gravity.CENTER_HORIZONTAL);
+                view_menu_name.setTextSize(20);
+                view_menu_name.setText("메뉴명");
+                view_menu_name.setTextColor(Color.WHITE);
+                tableRow1.addView(view_menu_name);
+
+
+                TextView view_menu_money = new TextView(getActivity());
+                view_menu_money.setGravity(Gravity.CENTER_HORIZONTAL);
+                view_menu_money.setTextSize(20);
+                view_menu_money.setText("사용 금액");
+                view_menu_money.setTextColor(Color.WHITE);
+                tableRow1.addView(view_menu_money);
+
+                tableLayout.addView(tableRow1);
+
 
                 new HttpNetwork("adfindUse_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
                     @Override
@@ -181,44 +194,7 @@ tr.commit(
                             Log.d("zxcxcvxv", findUseLastList.toString());
 
 
-                            tableLayout = (TableLayout) view.getRootView().findViewById(R.id.awardTable);
-
                             //when create table automatically , tableRow1 is fixed row.
-                            tableRow1 = new TableRow(getActivity());
-                            tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                            tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
-
-
-                            TextView view_menu_sort = new TextView(getActivity());
-                            view_menu_sort.setGravity(Gravity.CENTER_HORIZONTAL);
-                            view_menu_sort.setTextSize(20);
-                            view_menu_sort.setText("일자");
-                            view_menu_sort.setTextColor(Color.WHITE);
-
-                            tableRow1.addView(view_menu_sort);
-
-
-                            TextView view_menu_place = new TextView(getActivity());
-                            view_menu_place.setGravity(Gravity.CENTER_HORIZONTAL);
-                            view_menu_place.setTextSize(20);
-                            view_menu_place.setText("장소");
-                            view_menu_place.setTextColor(Color.WHITE);
-                            tableRow1.addView(view_menu_place);
-
-                            TextView view_menu_name = new TextView(getActivity());
-                            view_menu_name.setGravity(Gravity.CENTER_HORIZONTAL);
-                            view_menu_name.setTextSize(20);
-                            view_menu_name.setText("메뉴명");
-                            view_menu_name.setTextColor(Color.WHITE);
-                            tableRow1.addView(view_menu_name);
-
-
-                            TextView view_menu_money = new TextView(getActivity());
-                            view_menu_money.setGravity(Gravity.CENTER_HORIZONTAL);
-                            view_menu_money.setTextSize(20);
-                            view_menu_money.setText("사용 금액");
-                            view_menu_money.setTextColor(Color.WHITE);
-                            tableRow1.addView(view_menu_money);
 
 
                             int i;
@@ -238,39 +214,6 @@ tr.commit(
                                 i = i / 5;
 
                                 Log.d("asavav", findUseLastList.toString());
-
-
-                                /*
-
-                                if(tableLayout.getChildCount()>findUseLastList.size()/5){
-
-                                    for(int k=0; k<tableLayout.getChildCount(); i++) {
-                                        tableLayout.removeView(madeRow);
-                                    }
-                                }
-                                */
-
-
-                                int m;
-                                int n;
-                                /*
-                                for( m , n < tableLayout.getChildCount(); m<n; m++){
-                                    // then, you can remove the the row you want...
-                                    // for instance...
-                                    TableRow row = getChildAt(i);
-                                    if( something you want to check ) {
-                                        removeViewAt(i);
-                                        // or...
-                                        removeView(row);
-                                    }
-                                }
-                                */
-
-
-
-
-
-
                                 for (int j = 1; j < 2; j++) {
 
 
@@ -288,7 +231,7 @@ tr.commit(
 
 
                                     TextView findChainText = new TextView(getActivity());
-                                    findChainText.setId(j + 10);
+                                    findChainText.setId(j + 1);
                                     findChainText.setText(findLastList.get(1).toString());
                                     findChainText.setTextColor(Color.parseColor("#616161"));
                                     findChainText.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -297,7 +240,7 @@ tr.commit(
 
 
                                     TextView findMenuText = new TextView(getActivity());
-                                    findMenuText.setId(j + 20);
+                                    findMenuText.setId(j + 2);
                                     findMenuText.setText(findLastList.get(2).toString());
                                     findMenuText.setTextColor(Color.parseColor("#616161"));
                                     findMenuText.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -306,7 +249,7 @@ tr.commit(
 
 
                                     TextView findPriceText = new TextView(getActivity());
-                                    findPriceText.setId(j + 30);
+                                    findPriceText.setId(j + 3);
                                     findPriceText.setText(findLastList.get(3).toString());
                                     findPriceText.setTextColor(Color.parseColor("#616161"));
                                     findPriceText.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -396,3 +339,35 @@ tr.commit(
     }
     */
 
+
+
+    /*
+
+
+        알림
+     */
+      /*
+                if (madeRow != null) {
+
+                    AlertDialog.Builder  aB= new AlertDialog.Builder(getActivity());
+                    aB.setTitle("알림");
+                    aB.setMessage("테이블을 초기화하시겠습니까?");
+                    aB.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.detach(Admin_Usage_Page.this).attach(Admin_Usage_Page.this).commit();
+                        }
+
+                    });
+                    aB.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            return;
+                        }
+                    })
+                    .show();
+
+                }
+                */

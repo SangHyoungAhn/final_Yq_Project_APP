@@ -101,11 +101,18 @@ public class Admin_Calculate_Page extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("정 산");
          final View  view =inflater.inflate(R.layout.fragment_admin__calculate__page, container, false);
 
+        tableLayout = (TableLayout)view.findViewById(R.id.awardTable);
+        final TableRow remove_row = (TableRow)view.findViewById(R.id.removeRow);
+
+
          totDateText = (EditText)view.findViewById(R.id.totDateText);
          totChainText= (EditText)view.findViewById(R.id.totChainText);
          adminTotText= (TextView)view.findViewById(R.id.adminTotText);
 
          adminTotSearch=(Button)view.findViewById(R.id.adminTotSearch);
+
+
+
 
 
         adminTotSearch.setOnClickListener(new View.OnClickListener(){
@@ -141,7 +148,7 @@ public class Admin_Calculate_Page extends Fragment {
                             }
                             Log.d("mv223v", adTotLastList.toString());
 
-                            adminTotText.setText(adTotLastList.get(0).toString());
+                            adminTotText.setText(adTotLastList.get(0).toString()+"원");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -160,10 +167,39 @@ public class Admin_Calculate_Page extends Fragment {
                 });
 
 
+                tableLayout.removeView(remove_row);
                 Params params2 = new Params();
 
                 params2.add("date", totDateText.getText().toString());
                 params2.add("chain", totChainText.getText().toString());
+
+                if (madeRow != null) {
+                    tableLayout.removeAllViews();
+                }
+
+                tableRow1 = new TableRow(getActivity());
+                tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
+
+
+                TextView view_menu_sort = new TextView(getActivity());
+                view_menu_sort.setGravity(Gravity.CENTER_HORIZONTAL);
+                view_menu_sort.setTextSize(20);
+                view_menu_sort.setText("메뉴명");
+                view_menu_sort.setTextColor(Color.WHITE);
+
+                tableRow1.addView(view_menu_sort);
+
+
+                TextView view_menu_name = new TextView(getActivity());
+                view_menu_name.setGravity(Gravity.CENTER_HORIZONTAL);
+                view_menu_name.setTextSize(20);
+                view_menu_name.setText("구매횟수");
+                view_menu_name.setTextColor(Color.WHITE);
+                tableRow1.addView(view_menu_name);
+
+                tableLayout.addView(tableRow1);
+
 
 
                 new HttpNetwork("adTotuseAward.jsp", params2.getParams(), new HttpNetwork.AsyncResponse() {
@@ -188,29 +224,8 @@ public class Admin_Calculate_Page extends Fragment {
 
                             }
                                 Log.d("kvnxxcv",adTotAwardLastList.toString());
-                            tableLayout = (TableLayout)view.getRootView().findViewById(R.id.awardTable);
 
                             //when create table automatically , tableRow1 is fixed row.
-                            tableRow1 = new TableRow(getActivity());
-                            tableRow1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                            tableRow1.setBackgroundColor(Color.parseColor("#0091EA"));
-
-
-                            TextView view_menu_sort = new TextView(getActivity());
-                            view_menu_sort.setGravity(Gravity.CENTER_HORIZONTAL);
-                            view_menu_sort.setTextSize(20);
-                            view_menu_sort.setText("메뉴명");
-                            view_menu_sort.setTextColor(Color.WHITE);
-
-                            tableRow1.addView(view_menu_sort);
-
-
-                            TextView view_menu_name = new TextView(getActivity());
-                            view_menu_name.setGravity(Gravity.CENTER_HORIZONTAL);
-                            view_menu_name.setTextSize(20);
-                            view_menu_name.setText("구매횟수");
-                            view_menu_name.setTextColor(Color.WHITE);
-                            tableRow1.addView(view_menu_name);
 
                             int i;
                             for (i = 0; i < adTotAwardLastList.size(); i=i+2) {

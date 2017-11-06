@@ -129,7 +129,7 @@ public class Student_Tot_Usage extends Fragment {
 
                             }
 
-                            totUse.setText(totUseList.get(0).toString());
+                            totUse.setText(totUseList.get(0).toString()+"원");
 
                         } catch (JSONException e) {
                             e.printStackTrace();

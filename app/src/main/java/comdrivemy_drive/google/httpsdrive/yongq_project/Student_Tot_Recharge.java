@@ -115,7 +115,7 @@ public class Student_Tot_Recharge extends Fragment {
 
                             }
 
-                          totRecharge.setText(totRcgList.get(0).toString());
+                          totRecharge.setText(totRcgList.get(0).toString()+"원");
 
                         } catch (JSONException e) {
                             e.printStackTrace();

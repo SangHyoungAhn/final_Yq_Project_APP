@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Student_Recharge_Page"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="comdrivemy_drive.google.httpsdrive.yongq_project.Student_Recharge_Page">
 
 
     <LinearLayout
@@ -17,39 +17,40 @@
 
         <ImageView
 
-            android:layout_height="200dp"
             android:layout_width="wrap_content"
-            android:src="@drawable/creditcard">
-        </ImageView>
+            android:layout_height="200dp"
+            android:src="@drawable/creditcard"></ImageView>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
-        <EditText
-            android:singleLine="true"
-            android:imeOptions="actionDone"
-            android:id="@+id/recharge_price"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:hint=" 충전금액">
-
-        </EditText>
 
         <TextView
 
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="50dp"
-            android:gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
-            android:text=" " />
+            android:gravity="center"
+            android:text="충전금액: "
+            android:textSize="17dp" />
+
+        <EditText
+            android:id="@+id/recharge_price"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:hint=" 충전금액"
+            android:imeOptions="actionDone"
+            android:singleLine="true">
+
+        </EditText>
+
 
     </LinearLayout>
 
@@ -63,10 +64,10 @@
         <Button
 
             android:id="@+id/stu_recharge_Button"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="30dp"
-            android:layout_height="50dp"
             android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="70dp"
             android:background="@drawable/roundshape"
             android:text="충전하기">
 
@@ -76,12 +77,11 @@
         <Button
 
             android:id="@+id/stu_recharge_gift"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="50dp"
-            android:layout_height="50dp"
             android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="70dp"
             android:background="@drawable/roundshape"
-            android:text="선물">
-        </Button>
+            android:text="선물"></Button>
     </LinearLayout>
 </LinearLayout>

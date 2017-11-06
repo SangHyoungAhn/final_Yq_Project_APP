@@ -73,6 +73,7 @@
                 android:stretchColumns="*">
 
                 <TableRow
+                    android:id="@+id/usageRow"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#616161"
@@ -126,7 +127,6 @@
                         android:textSize="20sp" />
 
                 </TableRow>
-
             </TableLayout>
         </ScrollView>
 
