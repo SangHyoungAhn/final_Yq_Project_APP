@@ -18,6 +18,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 
 public class YQ_Final_Main_Menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,23 +44,52 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*
-        menu_stu_name=(TextView)findViewById(R.id.menu_bar_stu_name);
-        menu_stu_name.setText(Student_Login_Page.stu_name);
-
-
-        menu_stu_id=(TextView)findViewById(R.id.menu_bar_stu_id);
-        menu_stu_id.setText(Student_Login_Page.stu_id);
-        */
-
-
         setContentView(R.layout.activity_yq__final__main__menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("학생 메뉴");
 
 
-        // Log.d("1234d",Student_Login_Page.stu_name);
+        //Get student Info
+
+        Params params = new Params();
+        params.add("stu_id", Student_Login_Page.stu_id);
+        new HttpNetwork("login_Info.jsp", params.getParams(), new HttpNetwork.AsyncResponse() {
+            @Override
+            public void onSuccess(String response) {
+
+                JSONObject json = null;
+                try {
+                    JSONArray userArr = new JSONArray(response);
+                    for (int i = 0; i < userArr.length(); i++) {
+
+                        JSONObject jOb = new JSONObject(userArr.get(i).toString());
+
+                        ArrayList<String> userList = new ArrayList<String>();
+                        userList.add(jOb.getString("stu_id"));
+                        userList.add(jOb.getString("stu_pw"));
+                        userList.add(jOb.getString("stu_name"));
+                        userList.add(jOb.getString("stu_change"));
+
+
+                        Student_Login_Page.stu_change = userList.get(3).toString();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(String response) {
+
+            }
+
+            @Override
+            public void onPreExcute() {
+            }
+        });
+
 
         //정보 이동
         Button InfoButton = (Button) findViewById(R.id.Stu_Info);
@@ -71,7 +106,6 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
                 // getIntent().putExtra("stu_change",getIntent().getExtras().getString("stu_change"));
                 fT.replace(R.id.contents, new Student_Info_Page());
                 fT.commit();
-
 
 
             }
@@ -122,22 +156,6 @@ public class YQ_Final_Main_Menu extends AppCompatActivity
 
 
         });
-
-        /*
-        Button RechargeButton = (Button)findViewById(R.id.Recharge);
-        RechargeButton.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v){
-
-                FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
-                fT.replace(R.id.contents, Student_Recharge_Page.newInstance());
-                fT.commit();
-            }
-
-
-        });
-
-        */
 
         Button RechargeButton = (Button) findViewById(R.id.Recharge);
         RechargeButton.setOnClickListener(new View.OnClickListener() {

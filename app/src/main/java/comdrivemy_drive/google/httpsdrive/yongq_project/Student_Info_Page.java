@@ -89,7 +89,7 @@ public class Student_Info_Page extends Fragment {
 
 
         info_Stu_change = (TextView) view.findViewById(R.id.info_stu_change);
-        info_Stu_change.setText(getActivity().getIntent().getExtras().getString("stu_change"));
+        info_Stu_change.setText(getActivity().getIntent().getExtras().getString("stu_change")+"원");
 
 
         getActivity().getSupportFragmentManager().beginTransaction()
